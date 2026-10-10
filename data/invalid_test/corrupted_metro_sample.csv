@@ -1,0 +1,44 @@
+date,operator,station_or_route,ridership,scheduled_services,completed_services,average_delay_minutes,service_availability_pct
+2026-09-27,Metro,East-West Line (Thaltej - Vastral Gam),44202,132,129,1.2,97.7
+2026-09-27,Metro,North-South Line (APMC - Motera Stadium),34856,123,121,1.1,98.4
+2026-09-27,Metro,GN Branch (Koba Circle - GIFT City),-500,79,78,0.9,98.7
+2026-09-28,Metro,East-West Line (Thaltej - Vastral Gam),52417,150,145,1.4,96.7
+2026-09-28,Metro,North-South Line (APMC - Motera Stadium),44994,140,137,1.0,97.9
+invalid-date-format,Metro,GN Branch (Koba Circle - GIFT City),17813,90,88,0.7,97.8
+2026-09-29,Metro,East-West Line (Thaltej - Vastral Gam),53454,150,148,0.9,98.7
+2026-09-29,Metro,North-South Line (APMC - Motera Stadium),45621,ABC,138,1.2,98.6
+2026-09-29,Metro,GN Branch (Koba Circle - GIFT City),18298,90,88,0.9,97.8
+2026-09-30,Metro,East-West Line (Thaltej - Vastral Gam),53936,150,146,1.3,97.3
+2026-09-30,Metro,North-South Line (APMC - Motera Stadium),44134,140,137,1.0,97.9
+2026-09-30,Metro,GN Branch (Koba Circle - GIFT City),18332,90,87,0.9,96.7
+2026-10-01,Metro,East-West Line (Thaltej - Vastral Gam),53375,150,145,1.3,96.7
+2026-10-01,Metro,North-South Line (APMC - Motera Stadium),43098,140,137,1.1,97.9
+2026-10-01,Metro,GN Branch (Koba Circle - GIFT City),17825,90,87,0.9,96.7
+2026-10-02,Metro,East-West Line (Thaltej - Vastral Gam),50676,150,146,1.3,97.3
+2026-10-02,Metro,North-South Line (APMC - Motera Stadium),43437,140,138,1.1,98.6
+2026-10-02,Metro,GN Branch (Koba Circle - GIFT City),17677,90,87,1.0,96.7
+2026-10-03,Metro,East-West Line (Thaltej - Vastral Gam),41226,132,130,1.1,98.5
+2026-10-03,Metro,North-South Line (APMC - Motera Stadium),36825,123,121,1.1,98.4
+2026-10-03,Metro,GN Branch (Koba Circle - GIFT City),14749,79,78,0.5,98.7
+2026-10-04,Metro,East-West Line (Thaltej - Vastral Gam),41690,132,130,1.0,98.5
+2026-10-04,Metro,North-South Line (APMC - Motera Stadium),36315,123,120,1.0,97.6
+2026-10-04,Metro,GN Branch (Koba Circle - GIFT City),14672,79,78,0.7,98.7
+2026-10-05,Metro,East-West Line (Thaltej - Vastral Gam),52843,150,146,1.0,97.3
+2026-10-05,Metro,North-South Line (APMC - Motera Stadium),42664,140,136,0.8,97.1
+2026-10-05,Metro,GN Branch (Koba Circle - GIFT City),18051,90,89,0.6,98.9
+2026-10-06,Metro,East-West Line (Thaltej - Vastral Gam),50820,150,147,1.2,98.0
+2026-10-06,Metro,North-South Line (APMC - Motera Stadium),45677,140,137,0.9,97.9
+2026-10-06,Metro,GN Branch (Koba Circle - GIFT City),17424,90,87,0.6,96.7
+2026-10-07,Metro,East-West Line (Thaltej - Vastral Gam),50666,150,145,1.1,96.7
+2026-10-07,Metro,North-South Line (APMC - Motera Stadium),43205,140,139,1.0,99.3
+2026-10-07,Metro,GN Branch (Koba Circle - GIFT City),18284,90,87,0.9,96.7
+2026-10-08,Metro,East-West Line (Thaltej - Vastral Gam),51962,150,148,1.1,98.7
+2026-10-08,Metro,North-South Line (APMC - Motera Stadium),43892,140,137,0.8,97.9
+2026-10-08,Metro,GN Branch (Koba Circle - GIFT City),17353,90,89,0.7,98.9
+2026-10-09,Metro,East-West Line (Thaltej - Vastral Gam),53340,150,147,0.8,98.0
+2026-10-09,Metro,North-South Line (APMC - Motera Stadium),44455,140,135,0.8,96.4
+2026-10-09,Metro,GN Branch (Koba Circle - GIFT City),18090,90,87,1.0,96.7
+2026-10-10,Metro,East-West Line (Thaltej - Vastral Gam),29349,132,95,15.6,72.0
+2026-10-10,Metro,North-South Line (APMC - Motera Stadium),36919,123,120,1.0,97.6
+2026-10-10,Metro,GN Branch (Koba Circle - GIFT City),14701,79,77,0.9,97.5
+2026-09-30,Metro,North-South Line (APMC - Motera Stadium),44134,140,137,1.0,97.9

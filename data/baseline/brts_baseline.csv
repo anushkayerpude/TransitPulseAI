@@ -1,0 +1,71 @@
+date,operator,station_or_route,ridership,scheduled_services,completed_services,average_delay_minutes,service_availability_pct
+2026-09-27,BRTS,Route 101: RTO Circle - Maninagar,29962,96,93,3.6,96.9
+2026-09-27,BRTS,Route 202: Iskcon Cross Road - Naroda,28619,92,87,2.6,94.6
+2026-09-27,BRTS,Route 303: Shivranjani - Bopal,24499,83,81,2.1,97.6
+2026-09-27,BRTS,Route 404: Chandkheda - Geeta Mandir,26210,88,82,4.1,93.2
+2026-09-27,BRTS,Route 505: Vasna - S.P. Ring Road,20935,74,69,2.5,93.2
+2026-09-28,BRTS,Route 101: RTO Circle - Maninagar,38151,110,104,3.6,94.5
+2026-09-28,BRTS,Route 202: Iskcon Cross Road - Naroda,33790,105,99,3.4,94.3
+2026-09-28,BRTS,Route 303: Shivranjani - Bopal,29533,95,90,2.5,94.7
+2026-09-28,BRTS,Route 404: Chandkheda - Geeta Mandir,33267,100,96,3.5,96.0
+2026-09-28,BRTS,Route 505: Vasna - S.P. Ring Road,25035,85,80,2.1,94.1
+2026-09-29,BRTS,Route 101: RTO Circle - Maninagar,37507,110,105,2.6,95.5
+2026-09-29,BRTS,Route 202: Iskcon Cross Road - Naroda,33238,105,98,3.6,93.3
+2026-09-29,BRTS,Route 303: Shivranjani - Bopal,28371,95,92,3.3,96.8
+2026-09-29,BRTS,Route 404: Chandkheda - Geeta Mandir,30901,100,94,3.9,94.0
+2026-09-29,BRTS,Route 505: Vasna - S.P. Ring Road,24428,85,80,3.1,94.1
+2026-09-30,BRTS,Route 101: RTO Circle - Maninagar,38215,110,105,3.5,95.5
+2026-09-30,BRTS,Route 202: Iskcon Cross Road - Naroda,34836,105,99,2.7,94.3
+2026-09-30,BRTS,Route 303: Shivranjani - Bopal,28840,95,90,2.7,94.7
+2026-09-30,BRTS,Route 404: Chandkheda - Geeta Mandir,32586,100,96,4.5,96.0
+2026-09-30,BRTS,Route 505: Vasna - S.P. Ring Road,24196,85,81,2.3,95.3
+2026-10-01,BRTS,Route 101: RTO Circle - Maninagar,39099,110,104,2.5,94.5
+2026-10-01,BRTS,Route 202: Iskcon Cross Road - Naroda,33860,105,100,3.0,95.2
+2026-10-01,BRTS,Route 303: Shivranjani - Bopal,28419,95,92,2.7,96.8
+2026-10-01,BRTS,Route 404: Chandkheda - Geeta Mandir,32925,100,96,2.9,96.0
+2026-10-01,BRTS,Route 505: Vasna - S.P. Ring Road,25998,85,82,3.2,96.5
+2026-10-02,BRTS,Route 101: RTO Circle - Maninagar,39296,110,107,2.5,97.3
+2026-10-02,BRTS,Route 202: Iskcon Cross Road - Naroda,33960,105,99,3.2,94.3
+2026-10-02,BRTS,Route 303: Shivranjani - Bopal,27976,95,90,3.5,94.7
+2026-10-02,BRTS,Route 404: Chandkheda - Geeta Mandir,31398,100,97,3.6,97.0
+2026-10-02,BRTS,Route 505: Vasna - S.P. Ring Road,24846,85,83,3.2,97.6
+2026-10-03,BRTS,Route 101: RTO Circle - Maninagar,31299,96,92,2.4,95.8
+2026-10-03,BRTS,Route 202: Iskcon Cross Road - Naroda,27426,92,90,3.5,97.8
+2026-10-03,BRTS,Route 303: Shivranjani - Bopal,23860,83,80,2.1,96.4
+2026-10-03,BRTS,Route 404: Chandkheda - Geeta Mandir,26416,88,84,4.2,95.5
+2026-10-03,BRTS,Route 505: Vasna - S.P. Ring Road,19938,74,72,1.9,97.3
+2026-10-04,BRTS,Route 101: RTO Circle - Maninagar,30376,96,92,3.3,95.8
+2026-10-04,BRTS,Route 202: Iskcon Cross Road - Naroda,27289,92,86,4.0,93.5
+2026-10-04,BRTS,Route 303: Shivranjani - Bopal,23297,83,79,2.9,95.2
+2026-10-04,BRTS,Route 404: Chandkheda - Geeta Mandir,26070,88,84,3.7,95.5
+2026-10-04,BRTS,Route 505: Vasna - S.P. Ring Road,21212,74,70,2.8,94.6
+2026-10-05,BRTS,Route 101: RTO Circle - Maninagar,37205,110,105,3.3,95.5
+2026-10-05,BRTS,Route 202: Iskcon Cross Road - Naroda,33455,105,100,3.8,95.2
+2026-10-05,BRTS,Route 303: Shivranjani - Bopal,28008,95,91,3.5,95.8
+2026-10-05,BRTS,Route 404: Chandkheda - Geeta Mandir,33270,100,94,3.2,94.0
+2026-10-05,BRTS,Route 505: Vasna - S.P. Ring Road,24530,85,83,3.0,97.6
+2026-10-06,BRTS,Route 101: RTO Circle - Maninagar,39152,110,105,2.5,95.5
+2026-10-06,BRTS,Route 202: Iskcon Cross Road - Naroda,34907,105,101,3.5,96.2
+2026-10-06,BRTS,Route 303: Shivranjani - Bopal,30130,95,91,2.0,95.8
+2026-10-06,BRTS,Route 404: Chandkheda - Geeta Mandir,32811,100,95,3.9,95.0
+2026-10-06,BRTS,Route 505: Vasna - S.P. Ring Road,25877,85,80,2.0,94.1
+2026-10-07,BRTS,Route 101: RTO Circle - Maninagar,36805,110,105,2.6,95.5
+2026-10-07,BRTS,Route 202: Iskcon Cross Road - Naroda,34285,105,101,2.8,96.2
+2026-10-07,BRTS,Route 303: Shivranjani - Bopal,29311,95,90,2.7,94.7
+2026-10-07,BRTS,Route 404: Chandkheda - Geeta Mandir,33037,100,97,3.0,97.0
+2026-10-07,BRTS,Route 505: Vasna - S.P. Ring Road,24847,85,80,1.8,94.1
+2026-10-08,BRTS,Route 101: RTO Circle - Maninagar,38824,110,106,2.6,96.4
+2026-10-08,BRTS,Route 202: Iskcon Cross Road - Naroda,34656,105,101,3.2,96.2
+2026-10-08,BRTS,Route 303: Shivranjani - Bopal,27862,95,89,3.3,93.7
+2026-10-08,BRTS,Route 404: Chandkheda - Geeta Mandir,33034,100,96,4.2,96.0
+2026-10-08,BRTS,Route 505: Vasna - S.P. Ring Road,25165,85,80,2.0,94.1
+2026-10-09,BRTS,Route 101: RTO Circle - Maninagar,37417,110,107,3.5,97.3
+2026-10-09,BRTS,Route 202: Iskcon Cross Road - Naroda,34981,105,102,2.9,97.1
+2026-10-09,BRTS,Route 303: Shivranjani - Bopal,28418,95,89,3.2,93.7
+2026-10-09,BRTS,Route 404: Chandkheda - Geeta Mandir,32983,100,95,3.9,95.0
+2026-10-09,BRTS,Route 505: Vasna - S.P. Ring Road,24309,85,83,3.0,97.6
+2026-10-10,BRTS,Route 101: RTO Circle - Maninagar,32347,96,93,3.6,96.9
+2026-10-10,BRTS,Route 202: Iskcon Cross Road - Naroda,26820,92,89,3.1,96.7
+2026-10-10,BRTS,Route 303: Shivranjani - Bopal,24599,83,80,3.3,96.4
+2026-10-10,BRTS,Route 404: Chandkheda - Geeta Mandir,26892,88,83,4.1,94.3
+2026-10-10,BRTS,Route 505: Vasna - S.P. Ring Road,19857,74,72,3.0,97.3

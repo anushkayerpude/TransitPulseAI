@@ -1,0 +1,71 @@
+date,operator,station_or_route,ridership,scheduled_services,completed_services,average_delay_minutes,service_availability_pct
+2026-09-27,AMTS,Route 13/1: Lal Darwaja - SG Highway,37815,193,179,6.8,92.7
+2026-09-27,AMTS,Route 40/3: Kalupur Station - Isanpur,45740,211,189,6.3,89.6
+2026-09-27,AMTS,Route 66/2: Wadaj - Maninagar,34014,176,161,5.8,91.5
+2026-09-27,AMTS,Route 84/1: Paldi - Narol,31786,167,150,7.1,89.8
+2026-09-27,AMTS,Route 151: Civil Hospital - Sarkhej,41613,202,183,6.6,90.6
+2026-09-28,AMTS,Route 13/1: Lal Darwaja - SG Highway,46990,220,202,5.9,91.8
+2026-09-28,AMTS,Route 40/3: Kalupur Station - Isanpur,57167,240,217,7.9,90.4
+2026-09-28,AMTS,Route 66/2: Wadaj - Maninagar,42531,200,180,5.6,90.0
+2026-09-28,AMTS,Route 84/1: Paldi - Narol,39579,190,176,4.9,92.6
+2026-09-28,AMTS,Route 151: Civil Hospital - Sarkhej,52442,230,210,7.9,91.3
+2026-09-29,AMTS,Route 13/1: Lal Darwaja - SG Highway,47178,220,204,6.0,92.7
+2026-09-29,AMTS,Route 40/3: Kalupur Station - Isanpur,54350,240,221,6.9,92.1
+2026-09-29,AMTS,Route 66/2: Wadaj - Maninagar,42597,200,185,5.8,92.5
+2026-09-29,AMTS,Route 84/1: Paldi - Narol,40055,190,175,7.2,92.1
+2026-09-29,AMTS,Route 151: Civil Hospital - Sarkhej,52608,230,208,6.5,90.4
+2026-09-30,AMTS,Route 13/1: Lal Darwaja - SG Highway,48305,220,203,4.7,92.3
+2026-09-30,AMTS,Route 40/3: Kalupur Station - Isanpur,54098,240,222,5.5,92.5
+2026-09-30,AMTS,Route 66/2: Wadaj - Maninagar,40764,200,183,6.7,91.5
+2026-09-30,AMTS,Route 84/1: Paldi - Narol,39096,190,177,7.0,93.2
+2026-09-30,AMTS,Route 151: Civil Hospital - Sarkhej,50988,230,214,6.6,93.0
+2026-10-01,AMTS,Route 13/1: Lal Darwaja - SG Highway,49176,220,204,5.3,92.7
+2026-10-01,AMTS,Route 40/3: Kalupur Station - Isanpur,53306,240,225,5.4,93.8
+2026-10-01,AMTS,Route 66/2: Wadaj - Maninagar,43567,200,186,6.0,93.0
+2026-10-01,AMTS,Route 84/1: Paldi - Narol,40497,190,178,7.0,93.7
+2026-10-01,AMTS,Route 151: Civil Hospital - Sarkhej,51441,230,213,5.2,92.6
+2026-10-02,AMTS,Route 13/1: Lal Darwaja - SG Highway,48140,220,200,6.2,90.9
+2026-10-02,AMTS,Route 40/3: Kalupur Station - Isanpur,55758,240,220,7.5,91.7
+2026-10-02,AMTS,Route 66/2: Wadaj - Maninagar,43479,200,179,4.7,89.5
+2026-10-02,AMTS,Route 84/1: Paldi - Narol,37518,190,177,6.3,93.2
+2026-10-02,AMTS,Route 151: Civil Hospital - Sarkhej,53727,230,207,5.4,90.0
+2026-10-03,AMTS,Route 13/1: Lal Darwaja - SG Highway,40379,193,180,5.3,93.3
+2026-10-03,AMTS,Route 40/3: Kalupur Station - Isanpur,44769,211,189,7.8,89.6
+2026-10-03,AMTS,Route 66/2: Wadaj - Maninagar,33900,176,160,4.3,90.9
+2026-10-03,AMTS,Route 84/1: Paldi - Narol,32970,167,149,6.0,89.2
+2026-10-03,AMTS,Route 151: Civil Hospital - Sarkhej,43221,202,187,8.0,92.6
+2026-10-04,AMTS,Route 13/1: Lal Darwaja - SG Highway,39105,193,178,4.9,92.2
+2026-10-04,AMTS,Route 40/3: Kalupur Station - Isanpur,44792,211,188,6.5,89.1
+2026-10-04,AMTS,Route 66/2: Wadaj - Maninagar,34186,176,165,4.1,93.8
+2026-10-04,AMTS,Route 84/1: Paldi - Narol,31648,167,152,7.4,91.0
+2026-10-04,AMTS,Route 151: Civil Hospital - Sarkhej,43852,202,180,7.3,89.1
+2026-10-05,AMTS,Route 13/1: Lal Darwaja - SG Highway,48170,220,206,5.4,93.6
+2026-10-05,AMTS,Route 40/3: Kalupur Station - Isanpur,54551,240,215,5.4,89.6
+2026-10-05,AMTS,Route 66/2: Wadaj - Maninagar,43169,200,182,5.9,91.0
+2026-10-05,AMTS,Route 84/1: Paldi - Narol,39442,190,174,4.9,91.6
+2026-10-05,AMTS,Route 151: Civil Hospital - Sarkhej,53193,230,207,5.6,90.0
+2026-10-06,AMTS,Route 13/1: Lal Darwaja - SG Highway,48247,220,196,6.4,89.1
+2026-10-06,AMTS,Route 40/3: Kalupur Station - Isanpur,53711,240,216,7.6,90.0
+2026-10-06,AMTS,Route 66/2: Wadaj - Maninagar,41423,200,179,6.5,89.5
+2026-10-06,AMTS,Route 84/1: Paldi - Narol,37448,190,177,5.2,93.2
+2026-10-06,AMTS,Route 151: Civil Hospital - Sarkhej,50460,230,207,5.7,90.0
+2026-10-07,AMTS,Route 13/1: Lal Darwaja - SG Highway,48618,220,196,4.5,89.1
+2026-10-07,AMTS,Route 40/3: Kalupur Station - Isanpur,56275,240,216,6.0,90.0
+2026-10-07,AMTS,Route 66/2: Wadaj - Maninagar,40905,200,178,6.1,89.0
+2026-10-07,AMTS,Route 84/1: Paldi - Narol,39081,190,176,6.1,92.6
+2026-10-07,AMTS,Route 151: Civil Hospital - Sarkhej,53156,230,210,5.5,91.3
+2026-10-08,AMTS,Route 13/1: Lal Darwaja - SG Highway,48014,220,206,4.6,93.6
+2026-10-08,AMTS,Route 40/3: Kalupur Station - Isanpur,56246,240,224,6.6,93.3
+2026-10-08,AMTS,Route 66/2: Wadaj - Maninagar,41859,200,187,4.2,93.5
+2026-10-08,AMTS,Route 84/1: Paldi - Narol,38934,190,172,6.7,90.5
+2026-10-08,AMTS,Route 151: Civil Hospital - Sarkhej,51959,230,215,5.4,93.5
+2026-10-09,AMTS,Route 13/1: Lal Darwaja - SG Highway,46390,220,202,4.7,91.8
+2026-10-09,AMTS,Route 40/3: Kalupur Station - Isanpur,54010,240,221,6.6,92.1
+2026-10-09,AMTS,Route 66/2: Wadaj - Maninagar,41412,200,187,5.5,93.5
+2026-10-09,AMTS,Route 84/1: Paldi - Narol,38855,190,174,5.1,91.6
+2026-10-09,AMTS,Route 151: Civil Hospital - Sarkhej,52839,230,214,7.2,93.0
+2026-10-10,AMTS,Route 13/1: Lal Darwaja - SG Highway,33773,193,146,7.2,75.6
+2026-10-10,AMTS,Route 40/3: Kalupur Station - Isanpur,44925,211,190,6.0,90.0
+2026-10-10,AMTS,Route 66/2: Wadaj - Maninagar,28821,176,133,6.2,75.6
+2026-10-10,AMTS,Route 84/1: Paldi - Narol,31792,167,154,5.8,92.2
+2026-10-10,AMTS,Route 151: Civil Hospital - Sarkhej,41455,202,189,5.4,93.6
