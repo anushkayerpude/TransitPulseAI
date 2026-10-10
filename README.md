@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/transitpulse_hero.jpg" alt="TransitPulse AI Command Center" width="100%" style="border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);" />
-
 # 🚇 TransitPulse AI
 ### AI-Powered Public Transport Operations Intelligence & Two-Minute Morning Briefing System
 
