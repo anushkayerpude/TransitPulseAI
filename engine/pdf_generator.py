@@ -34,15 +34,15 @@ def generate_pdf_brief(brief_data: Dict[str, Any]) -> bytes:
     
     styles = getSampleStyleSheet()
     
-    # Brand Colors
-    c_navy = colors.HexColor("#0A192F")
+    # Brand Colors (Ahmedabad Metro White & Orange Theme)
+    c_navy = colors.HexColor("#0F172A")
     c_slate = colors.HexColor("#1E293B")
-    c_teal = colors.HexColor("#0D9488")
+    c_teal = colors.HexColor("#FF6B00")  # Ahmedabad Metro Saffron Orange Accent
     c_red = colors.HexColor("#DC2626")
     c_amber = colors.HexColor("#D97706")
     c_green = colors.HexColor("#059669")
-    c_gray_bg = colors.HexColor("#F8FAFC")
-    c_border = colors.HexColor("#CBD5E1")
+    c_gray_bg = colors.HexColor("#FFF7ED")
+    c_border = colors.HexColor("#FED7AA")
     
     # Custom Typography Styles
     title_style = ParagraphStyle(

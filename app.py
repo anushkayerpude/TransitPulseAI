@@ -4,6 +4,7 @@ AI-Powered Public Transport Operations Intelligence & Daily Briefing System
 Hackathon: Metro Hacks — DevFest Gandhinagar
 Problem Statement: PS-13 — The Two-Minute Morning Brief
 Target Users: Metro (GMRC), BRTS (Janmarg), AMTS Operations Teams
+Theme: White & Ahmedabad Metro Orange (#FF6B00) Design System
 """
 
 import os
@@ -14,7 +15,7 @@ from datetime import datetime
 
 # Page configuration - Wide layout with custom title
 st.set_page_config(
-    page_title="TransitPulse AI | Metro, BRTS & AMTS Intelligence",
+    page_title="TransitPulse AI | Ahmedabad Metro (GMRC), BRTS & AMTS Intelligence",
     page_icon="🚇",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -86,24 +87,24 @@ if st.session_state.metro_file is None:
 with st.sidebar:
     st.markdown(f"""
     <div class="hackathon-sidebar-card">
-        <div style="font-size: 11px; font-weight: 800; color: #14B8A6; text-transform: uppercase; letter-spacing: 0.5px;">
+        <div style="font-size: 11px; font-weight: 800; color: #EA580C; text-transform: uppercase; letter-spacing: 0.6px;">
             {HACKATHON_EVENT}
         </div>
-        <div style="font-size: 14px; font-weight: 700; color: #F8FAFC; margin-top: 2px;">
+        <div style="font-size: 14px; font-weight: 800; color: #0F172A; margin-top: 3px; font-family: 'Outfit', sans-serif;">
             {PROBLEM_STATEMENT}
         </div>
-        <div style="font-size: 11px; color: #94A3B8; margin-top: 4px;">
-            {VERSION}
+        <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">
+            {VERSION} • Ahmedabad & Gandhinagar
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("### ⚡ Quick Demo Datasets")
-    st.caption("One-click presets for immediate live judging demonstration:")
+    st.markdown("### ⚡ Live Demo Presets")
+    st.caption("One-click presets for rapid judge evaluation:")
     
     col_s1, col_s2 = st.columns(2)
     with col_s1:
-        if st.button("🚨 Load Incidents", use_container_width=True, help="14-day history with 3 deliberate anomalies on final day"):
+        if st.button("🚨 Load Incidents", use_container_width=True, help="14-day history with 3 deliberate operational anomalies on final day"):
             load_sample_dataset("incident")
             st.rerun()
     with col_s2:
@@ -166,17 +167,27 @@ with st.sidebar:
     st.caption("TransitPulse AI • DevFest Gandhinagar PS-13 • Version 1.0 MVP")
 
 # -----------------------------------------------------------------------------
-# MAIN APP HEADER BANNER
+# MAIN APP HEADER BANNER (WHITE & AHMEDABAD METRO ORANGE)
 # -----------------------------------------------------------------------------
 st.markdown(f"""
-<div class="ops-banner">
-    <div class="ops-title-block">
-        <h1>{APP_NAME}</h1>
-        <p>{APP_SUBTITLE} &nbsp;|&nbsp; <strong>Gandhinagar & Ahmedabad Regional Transit Joint Ops</strong></p>
+<div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 6px solid #FF6B00; border-radius: 12px; padding: 18px 24px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(255, 107, 0, 0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+    <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 26px;">🚇</span>
+            <h1 style="font-size: 26px; font-weight: 800; color: #0F172A; margin: 0; font-family: 'Outfit', sans-serif;">{APP_NAME}</h1>
+            <span style="background: #FFF7ED; border: 1px solid #FED7AA; color: #EA580C; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px;">
+                GMRC • AHMEDABAD METRO
+            </span>
+        </div>
+        <p style="font-size: 13.5px; color: #64748B; margin: 4px 0 0 0; font-weight: 500;">
+            {APP_SUBTITLE} &nbsp;|&nbsp; <strong>Gandhinagar & Ahmedabad Regional Transit Joint Ops</strong>
+        </p>
     </div>
-    <div class="ops-live-badge">
-        <div class="ops-live-dot"></div>
-        <span>OPERATIONAL INTELLIGENCE ACTIVE</span>
+    <div style="display: flex; gap: 8px; align-items: center;">
+        <span style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 11.5px; font-weight: 700; padding: 6px 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px;">
+            <span style="width: 8px; height: 8px; background-color: #10B981; border-radius: 50%;"></span>
+            OPERATIONAL SENTINEL ACTIVE
+        </span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -239,21 +250,234 @@ if st.session_state.consolidated_data is None and st.session_state.metro_file is
     run_pipeline()
 
 # -----------------------------------------------------------------------------
-# APP NAVIGATION TABS
+# APP NAVIGATION TABS (FEATURING LANDING PAGE AS TAB 1)
 # -----------------------------------------------------------------------------
-tab_overview, tab_import, tab_intel, tab_brief = st.tabs([
+tab_landing, tab_overview, tab_import, tab_intel, tab_brief = st.tabs([
+    "🏠 Metro Landing Portal",
     "📊 Executive Overview",
-    "📥 Data Import & Validation",
+    "📥 Data Import & Audit",
     "🔍 Operations Intelligence",
     "📋 Two-Minute Daily Brief"
 ])
 
 # =============================================================================
-# TAB 1: EXECUTIVE OVERVIEW
+# TAB 1: REALISTIC LANDING PAGE WITH AHMEDABAD METRO
+# =============================================================================
+with tab_landing:
+    # 1. Full-Bleed Realistic Ahmedabad Metro Hero Section
+    st.markdown("""
+    <div class="landing-hero-container">
+        <div style="position: relative;">
+            <img src="https://raw.githubusercontent.com/anushkayerpude/TransitPulseAI/main/assets/ahmedabad_metro_hero.jpg" 
+                 onerror="this.onerror=null; this.src='assets/ahmedabad_metro_hero.jpg';"
+                 style="width: 100%; max-height: 460px; object-fit: cover; display: block;" 
+                 alt="Ahmedabad Metro (GMRC) Train on Viaduct" />
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.65) 60%, rgba(15,23,42,0) 100%); padding: 32px 36px 24px 36px;">
+                <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+                    <span class="metro-badge-tag">🚇 GMRC AHMEDABAD METRO</span>
+                    <span style="background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: #FFFFFF; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3);">
+                        JANMARG BRTS & AMTS INTEGRATED
+                    </span>
+                    <span style="background: #10B981; color: #FFFFFF; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px;">
+                        PS-13: TWO-MINUTE MORNING BRIEF
+                    </span>
+                </div>
+                <h1 style="color: #FFFFFF; font-family: 'Outfit', sans-serif; font-size: 34px; font-weight: 800; margin: 0 0 8px 0; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                    Public Transport Operations Intelligence Portal
+                </h1>
+                <p style="color: #E2E8F0; font-size: 15.5px; max-width: 820px; margin: 0; line-height: 1.5; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+                    Harmonizing daily operational feeds across Gujarat Metro Rail Corporation, Janmarg BRTS, and AMTS. 
+                    Detecting corridor deviations, isolating signaling bottlenecks, and synthesizing executive standup briefings in under 120 seconds.
+                </p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 2. Quick Action Launchpad Cards
+    st.markdown('<div class="section-title"><span>⚡ Quick Action Launchpad (One-Click Operations Presets)</span></div>', unsafe_allow_html=True)
+    cta_col1, cta_col2, cta_col3 = st.columns(3)
+    
+    with cta_col1:
+        st.markdown("""
+        <div class="kpi-card" style="border-top: 4px solid #EF4444;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 800; color: #EF4444; font-size: 12px; text-transform: uppercase;">1. Incident Scenario</span>
+                <span style="font-size: 18px;">🚨</span>
+            </div>
+            <h4 style="margin: 0 0 6px 0; color: #0F172A;">Simulate Injected Incidents</h4>
+            <p style="font-size: 12.5px; color: #64748B; margin-bottom: 14px;">
+                Loads 14 days with 3 deliberate anomalies: Metro signaling delay (+1,080%), BRTS route drop (-38%), and AMTS availability drop (76%).
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("🚨 Load Incident Demo", use_container_width=True, type="primary"):
+            load_sample_dataset("incident")
+            st.rerun()
+
+    with cta_col2:
+        st.markdown("""
+        <div class="kpi-card" style="border-top: 4px solid #10B981;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 800; color: #10B981; font-size: 12px; text-transform: uppercase;">2. Nominal Baseline</span>
+                <span style="font-size: 18px;">🟢</span>
+            </div>
+            <h4 style="margin: 0 0 6px 0; color: #0F172A;">Explore Normal Baseline</h4>
+            <p style="font-size: 12.5px; color: #64748B; margin-bottom: 14px;">
+                Demonstrates smooth, nominal multi-modal network operations with healthy weekday-adjusted historical alignment.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("🟢 Load Baseline Demo", use_container_width=True):
+            load_sample_dataset("baseline")
+            st.rerun()
+
+    with cta_col3:
+        st.markdown("""
+        <div class="kpi-card" style="border-top: 4px solid #F59E0B;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-weight: 800; color: #D97706; font-size: 12px; text-transform: uppercase;">3. Defensive Quality Gate</span>
+                <span style="font-size: 18px;">🧪</span>
+            </div>
+            <h4 style="margin: 0 0 6px 0; color: #0F172A;">Test Pre-Flight Schema Audit</h4>
+            <p style="font-size: 12.5px; color: #64748B; margin-bottom: 14px;">
+                Showcases pre-flight data sentinels catching negative ridership, bad dates, and duplicates with actionable repair tips.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("🧪 Test Validation Failure", use_container_width=True, key="landing_val_btn"):
+            st.session_state.metro_file = "data/invalid_test/corrupted_metro_sample.csv"
+            st.session_state.brts_file = "data/baseline/brts_baseline.csv"
+            st.session_state.amts_file = "data/baseline/amts_baseline.csv"
+            st.session_state.active_dataset_label = "Corrupted Validation Test Dataset"
+            st.session_state.consolidated_data = None
+            st.session_state.detected_exceptions = []
+            st.session_state.explained_exceptions = []
+            st.session_state.morning_brief = None
+            st.rerun()
+
+    # 3. Live Animated Track Status Monitor
+    st.markdown('<div class="section-title"><span>🚊 Real-Time Metro Track & Signal Telemetry Simulation</span></div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 12px; padding: 14px; box-shadow: 0 4px 16px rgba(255, 107, 0, 0.05); margin-bottom: 24px;">
+        <img src="assets/metro_transit_animation.svg" style="width: 100%; border-radius: 8px; display: block;" alt="GMRC Metro Track Status" />
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 4. Regional Transit Network Status Grid
+    st.markdown('<div class="section-title"><span>🏙️ Gandhinagar & Ahmedabad Regional Transit Network Coverage</span></div>', unsafe_allow_html=True)
+    net_col1, net_col2, net_col3 = st.columns(3)
+    
+    with net_col1:
+        st.markdown("""
+        <div class="op-card-metro">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 15px; font-weight: 800; color: #FF6B00; font-family: 'Outfit', sans-serif;">
+                    🚇 GMRC Metro Network
+                </span>
+                <span style="background: #FFF7ED; color: #EA580C; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid #FED7AA;">40.0+ km</span>
+            </div>
+            <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                • <strong>East-West Line:</strong> Thaltej ⇄ Vastral Gam (21.1 km • 17 Stns)<br/>
+                • <strong>North-South Line:</strong> Motera Stadium ⇄ APMC (18.9 km • 15 Stns)<br/>
+                • <strong>GN Branch:</strong> Koba Circle ⇄ GIFT City (Phase 2 Link)<br/>
+                • <strong>Headway:</strong> 3–5 min Peak • Dedicated CBTC Rail
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with net_col2:
+        st.markdown("""
+        <div class="op-card-brts">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 15px; font-weight: 800; color: #0D9488; font-family: 'Outfit', sans-serif;">
+                    🚌 Janmarg Ahmedabad BRTS
+                </span>
+                <span style="background: #CCFBF1; color: #0F766E; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid #99F6E4;">160+ km</span>
+            </div>
+            <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                • <strong>Route 101:</strong> RTO Circle ⇄ Maninagar<br/>
+                • <strong>Route 202:</strong> Iskcon Cross Road ⇄ Naroda<br/>
+                • <strong>Route 303:</strong> Shivranjani ⇄ Bopal (Key Arterial)<br/>
+                • <strong>Route 404 & 505:</strong> Chandkheda, Geeta Mandir, Vasna<br/>
+                • <strong>Infrastructure:</strong> Median Dedicated Bus Lanes
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with net_col3:
+        st.markdown("""
+        <div class="op-card-amts">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 15px; font-weight: 800; color: #D97706; font-family: 'Outfit', sans-serif;">
+                    🚍 AMTS Municipal City Bus
+                </span>
+                <span style="background: #FEF3C7; color: #B45309; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 12px; border: 1px solid #FDE68A;">700+ Buses</span>
+            </div>
+            <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                • <strong>Route 13/1:</strong> Lal Darwaja ⇄ SG Highway<br/>
+                • <strong>Route 40/3:</strong> Kalupur Railway Station ⇄ Isanpur<br/>
+                • <strong>Route 66/2 & 84/1:</strong> Wadaj, Maninagar, Paldi, Narol<br/>
+                • <strong>Route 151:</strong> Civil Hospital ⇄ Sarkhej<br/>
+                • <strong>Role:</strong> First-and-Last Mile Municipal Feeder
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 5. Core Operational Architecture Pillars (PS-13)
+    st.markdown('<div class="section-title"><span>💡 Core Architecture Pillars (PS-13: The Two-Minute Morning Brief)</span></div>', unsafe_allow_html=True)
+    feat_cols = st.columns(4)
+    
+    with feat_cols[0]:
+        st.markdown("""
+        <div class="kpi-card" style="text-align: center; border-top: 3px solid #FF6B00;">
+            <div style="font-size: 24px; margin-bottom: 6px;">🛡️</div>
+            <strong style="color: #0F172A; font-size: 14px;">Pre-Flight Quality Gate</strong>
+            <p style="font-size: 12px; color: #64748B; margin-top: 6px;">
+                Refuses silent zero-filling. Traps corrupted dates, missing headers, and negative numbers before bad data pollutes meetings.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with feat_cols[1]:
+        st.markdown("""
+        <div class="kpi-card" style="text-align: center; border-top: 3px solid #0D9488;">
+            <div style="font-size: 24px; margin-bottom: 6px;">📅</div>
+            <strong style="color: #0F172A; font-size: 14px;">Weekday-Adjusted Baselining</strong>
+            <p style="font-size: 12px; color: #64748B; margin-top: 6px;">
+                Compares Monday to past Mondays. Eliminates false alarms caused by normal weekend dips vs genuine operational distress.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with feat_cols[2]:
+        st.markdown("""
+        <div class="kpi-card" style="text-align: center; border-top: 3px solid #D97706;">
+            <div style="font-size: 24px; margin-bottom: 6px;">🎯</div>
+            <strong style="color: #0F172A; font-size: 14px;">Telemetry Provenance</strong>
+            <p style="font-size: 12px; color: #64748B; margin-top: 6px;">
+                Enforces strict separation between observed telemetry facts and root-cause hypotheses with zero AI hallucinations.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with feat_cols[3]:
+        st.markdown("""
+        <div class="kpi-card" style="text-align: center; border-top: 3px solid #10B981;">
+            <div style="font-size: 24px; margin-bottom: 6px;">📄</div>
+            <strong style="color: #0F172A; font-size: 14px;">1-Page PDF Briefing</strong>
+            <p style="font-size: 12px; color: #64748B; margin-top: 6px;">
+                Native ReportLab vector PDF engine renders an executive management standup document in under 2 seconds.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+# =============================================================================
+# TAB 2: EXECUTIVE OVERVIEW
 # =============================================================================
 with tab_overview:
     if st.session_state.consolidated_data is None:
-        st.warning("⚠️ Data feeds require attention. Check the **Data Import & Validation** tab to resolve errors.")
+        st.warning("⚠️ Data feeds require attention. Check the **Data Import & Audit** tab to resolve errors.")
     else:
         brief = st.session_state.morning_brief
         consolidated = st.session_state.consolidated_data
@@ -296,7 +520,7 @@ with tab_overview:
             render_kpi_metric(
                 "Average Network Delay",
                 f"{city_m.get('citywide_avg_delay_minutes', 0):.1f} min",
-                "Weighted transit wait delay",
+                "Weighted transit delay",
                 icon="⏱️",
                 is_alert=(city_m.get("citywide_avg_delay_minutes", 0) > 5.0)
             )
@@ -309,8 +533,8 @@ with tab_overview:
                 is_alert=(crit_count > 0)
             )
 
-        # Row 2: Operator Snapshot Cards
-        st.markdown('<div class="section-title"><span>🚏 Multi-Modal Operator Status</span></div>', unsafe_allow_html=True)
+        # Row 2: Operator Snapshot Cards (White & Orange Theme)
+        st.markdown('<div class="section-title"><span>🚏 Multi-Modal Operator Status Overview</span></div>', unsafe_allow_html=True)
         op_cols = st.columns(3)
         for i, op_name in enumerate(["Metro", "BRTS", "AMTS"]):
             with op_cols[i]:
@@ -326,41 +550,41 @@ with tab_overview:
                 is_op_crit = any(e.raw.operator == op_name and e.raw.severity == "CRITICAL" for e in st.session_state.explained_exceptions)
                 is_op_warn = any(e.raw.operator == op_name and e.raw.severity == "WARNING" for e in st.session_state.explained_exceptions)
                 status_badge = '<span class="pill-crit">🚨 CRITICAL</span>' if is_op_crit else (
-                    '<span class="pill-warn">⚠️ REVIEW</span>' if is_op_warn else '<span style="color:#10B981; font-weight:700; font-size:11px;">✅ NOMINAL</span>'
+                    '<span class="pill-warn">⚠️ REVIEW</span>' if is_op_warn else '<span style="color:#10B981; font-weight:800; font-size:11.5px; background: #ECFDF5; padding: 3px 8px; border-radius: 12px; border: 1px solid #A7F3D0;">✅ NOMINAL</span>'
                 )
 
                 st.markdown(f"""
-                <div class="kpi-card" style="border-top: 3px solid {cfg.get('color', '#38BDF8')};">
+                <div class="kpi-card" style="border-top: 4px solid {cfg.get('color', '#FF6B00')};">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="font-weight: 700; font-size: 15px; color: #F8FAFC;">
+                        <span style="font-weight: 800; font-size: 16px; color: #0F172A; font-family: 'Outfit', sans-serif;">
                             {cfg.get('icon', '')} {op_name}
                         </span>
                         {status_badge}
                     </div>
-                    <div style="font-size: 11px; color: #94A3B8; margin-bottom: 10px;">{cfg.get('full_name', '')}</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
-                        <div>
+                    <div style="font-size: 11.5px; color: #64748B; margin-bottom: 12px; font-weight: 500;">{cfg.get('full_name', '')}</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12.5px;">
+                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
                             <span style="color: #64748B;">Ridership:</span><br/>
-                            <strong style="color: #F8FAFC; font-size: 14px;">{r_count:,}</strong>
+                            <strong style="color: #0F172A; font-size: 15px;">{r_count:,}</strong>
                         </div>
-                        <div>
+                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
                             <span style="color: #64748B;">Availability:</span><br/>
-                            <strong style="color: {'#EF4444' if avail < 85 else '#2DD4BF'}; font-size: 14px;">{avail:.1f}%</strong>
+                            <strong style="color: {'#EF4444' if avail < 85 else '#0D9488'}; font-size: 15px;">{avail:.1f}%</strong>
                         </div>
-                        <div>
+                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
                             <span style="color: #64748B;">Completed Trips:</span><br/>
-                            <strong style="color: #CBD5E1;">{comp:,} / {sched:,}</strong>
+                            <strong style="color: #334155;">{comp:,} / {sched:,}</strong>
                         </div>
-                        <div>
+                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
                             <span style="color: #64748B;">Avg Delay:</span><br/>
-                            <strong style="color: {'#EF4444' if delay > 6 else '#CBD5E1'}; font-size: 14px;">{delay:.1f} min</strong>
+                            <strong style="color: {'#EF4444' if delay > 6 else '#334155'}; font-size: 15px;">{delay:.1f} min</strong>
                         </div>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
 
-        # Row 3: Ridership Trend & Availability Visualizations
-        st.markdown('<div class="section-title"><span>📈 Citywide Multi-Modal Trends</span></div>', unsafe_allow_html=True)
+        # Row 3: Ridership Trend & Availability Visualizations in White & Orange
+        st.markdown('<div class="section-title"><span>📈 Citywide Multi-Modal Trends & Fleet Health</span></div>', unsafe_allow_html=True)
         chart_col1, chart_col2 = st.columns([1.6, 1.0])
         with chart_col1:
             fig_trend = create_ridership_trend_chart(consolidated, highlight_date=target_date)
@@ -370,10 +594,10 @@ with tab_overview:
             st.plotly_chart(fig_avail, use_container_width=True)
 
 # =============================================================================
-# TAB 2: DATA IMPORT & VALIDATION
+# TAB 3: DATA IMPORT & VALIDATION
 # =============================================================================
 with tab_import:
-    st.markdown('<div class="section-title"><span>📥 Ingest Operational Data Feeds</span></div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title"><span>📥 Ingest Operational Data Feeds (Pre-Flight Audit)</span></div>', unsafe_allow_html=True)
     st.info(f"**Current Ingestion Source:** `{st.session_state.active_dataset_label}`")
 
     # Sample CSV Downloads for Judges
@@ -442,12 +666,12 @@ with tab_import:
                     
                 if v.is_valid:
                     st.markdown(f"""
-                    <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid #10B981; border-radius: 8px; padding: 14px;">
+                    <div style="background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 10px; padding: 16px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <strong style="color: #10B981; font-size: 14px;">✅ {op_key} VALID</strong>
-                            <span style="font-size: 11px; color: #94A3B8;">{v.row_count} rows</span>
+                            <strong style="color: #166534; font-size: 14px;">✅ {op_key} VALID</strong>
+                            <span style="font-size: 11.5px; color: #166534; font-weight: 700;">{v.row_count} rows</span>
                         </div>
-                        <div style="font-size: 12px; color: #CBD5E1;">
+                        <div style="font-size: 12.5px; color: #14532D; line-height: 1.5;">
                             • Dates: {v.date_range[0]} to {v.date_range[1]}<br/>
                             • Units Detected: {v.unique_units_count} routes/lines<br/>
                             • Missing zero-fills: 0 detected
@@ -460,12 +684,12 @@ with tab_import:
                                 st.caption(f"• {w['issue']}")
                 else:
                     st.markdown(f"""
-                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #EF4444; border-radius: 8px; padding: 14px;">
+                    <div style="background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 10px; padding: 16px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <strong style="color: #EF4444; font-size: 14px;">❌ {op_key} INVALID</strong>
-                            <span style="font-size: 11px; color: #EF4444; font-weight:700;">{len(v.errors)} Errors</span>
+                            <strong style="color: #991B1B; font-size: 14px;">❌ {op_key} INVALID</strong>
+                            <span style="font-size: 11.5px; color: #991B1B; font-weight: 800;">{len(v.errors)} Errors</span>
                         </div>
-                        <div style="font-size: 12px; color: #FCA5A5;">
+                        <div style="font-size: 12.5px; color: #B91C1C;">
                             Resolve issues below to proceed with analysis.
                         </div>
                     </div>
@@ -474,7 +698,7 @@ with tab_import:
                         st.error(f"**Issue:** {err['issue']}\n\n💡 **Action:** {err['fix']}")
 
 # =============================================================================
-# TAB 3: OPERATIONS INTELLIGENCE
+# TAB 4: OPERATIONS INTELLIGENCE
 # =============================================================================
 with tab_intel:
     if st.session_state.consolidated_data is None:
@@ -491,7 +715,6 @@ with tab_intel:
         # Row 1 Charts: Delay Comparison & Corridor Breakdown
         c_col1, c_col2 = st.columns([1.1, 1.4])
         with c_col1:
-            # Baseline delays estimate for comparison chart
             hist_delays = {}
             for op in consolidated.operators:
                 op_raw = consolidated.raw_df[(consolidated.raw_df["operator"] == op) & (consolidated.raw_df["date"] < target_date)]
@@ -538,7 +761,7 @@ with tab_intel:
             )
 
 # =============================================================================
-# TAB 4: TWO-MINUTE DAILY BRIEF (PS-13 CORE DELIVERABLE)
+# TAB 5: TWO-MINUTE DAILY BRIEF (PS-13 CORE DELIVERABLE)
 # =============================================================================
 with tab_brief:
     if st.session_state.morning_brief is None:
@@ -576,15 +799,19 @@ with tab_brief:
 
         st.markdown("---")
 
-        # 1. Executive Narrative Box
+        # 1. Executive Narrative Box (White & Ahmedabad Orange)
         health = brief.get("overall_health_score", 95.0)
         st.markdown(f"""
-        <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid #1E293B; border-left: 5px solid #0D9488; border-radius: 8px; padding: 18px; margin-bottom: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                <span style="font-size: 13px; font-weight: 700; color: #14B8A6; text-transform: uppercase;">Executive Morning Brief</span>
-                <span style="font-size: 12px; font-weight: 700; color: {'#EF4444' if health < 80 else '#10B981'};">Health Rating: {health:.0f}/100 ({brief.get('status_label')})</span>
+        <div style="background: #FFF7ED; border: 1px solid #FED7AA; border-left: 6px solid #FF6B00; border-radius: 12px; padding: 22px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(255,107,0,0.06);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 13.5px; font-weight: 800; color: #EA580C; text-transform: uppercase; letter-spacing: 0.6px; font-family: 'Outfit', sans-serif;">
+                    Executive Morning Standup Brief
+                </span>
+                <span style="font-size: 12.5px; font-weight: 800; color: {'#EF4444' if health < 80 else '#065F46'}; background: {'#FEF2F2' if health < 80 else '#ECFDF5'}; padding: 4px 12px; border-radius: 20px; border: 1px solid {'#FCA5A5' if health < 80 else '#A7F3D0'};">
+                    Network Health: {health:.0f}/100 ({brief.get('status_label')})
+                </span>
             </div>
-            <div style="font-size: 14.5px; color: #F1F5F9; line-height: 1.55;">
+            <div style="font-size: 15px; color: #1E293B; line-height: 1.65;">
                 {brief.get('executive_narrative')}
             </div>
         </div>
@@ -614,12 +841,12 @@ with tab_brief:
         st.markdown("#### 🎯 Priority Operations Action Checklist")
         for act in brief.get("top_actions", []):
             st.markdown(f"""
-            <div style="background: #0F172A; border-left: 4px solid #F59E0B; border-radius: 0 6px 6px 0; padding: 12px 16px; margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #FBBF24; margin-bottom: 2px;">
+            <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 5px solid #FF6B00; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: #EA580C; margin-bottom: 4px;">
                     <span>{act['priority']}</span>
                     <span>{act['target']}</span>
                 </div>
-                <div style="font-size: 13.5px; color: #F8FAFC;">
+                <div style="font-size: 14px; color: #1E293B; line-height: 1.5;">
                     {act['action']}
                 </div>
             </div>

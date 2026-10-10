@@ -13,8 +13,8 @@ VERSION = "1.0 — Hackathon MVP"
 OPERATOR_CONFIG = {
     "Metro": {
         "full_name": "Gujarat Metro Rail Corporation (GMRC)",
-        "color": "#38BDF8",  # Sky / Rail Blue
-        "light_color": "#E0F2FE",
+        "color": "#FF6B00",  # Ahmedabad Metro Saffron Orange
+        "light_color": "#FFF7ED",
         "icon": "🚇",
         "unit_label": "Lines & Corridors",
         "typical_delay_threshold_min": 2.0,

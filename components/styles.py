@@ -1,135 +1,131 @@
 """
-TransitPulse AI - Custom Operations Control Center Styling
-Color Palette: Deep Navy (#0A192F), Midnight (#0F2444), Teal (#0D9488, #14B8A6),
-Slate Neutral, and Clear Status Colors (Red, Amber, Emerald).
+TransitPulse AI - White & Ahmedabad Metro Orange Design System
+Inspired by Gujarat Metro Rail Corporation (GMRC) branding:
+Pure White (#FFFFFF), Warm Cream (#FFF7ED), Vibrant Metro Orange (#FF6B00 / #EA580C),
+Dark Slate typography (#0F172A), and Clean Modern Cards.
 """
 
 CUSTOM_CSS = """
 <style>
-/* Import Inter Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+/* Import Inter & Outfit Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
 
 html, body, [class*="css"] {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Header & Title Adjustments */
-header[data-testid="stHeader"] {
-    background: rgba(10, 25, 47, 0.95);
-    backdrop-filter: blur(8px);
-}
-
+/* Base App Theme - Clean White & Warm Light Slate */
 .stApp {
-    background-color: #0B132B;
-    color: #F1F5F9;
+    background-color: #FAFAFC;
+    color: #0F172A;
 }
 
-/* Sidebar Customization */
+/* Header Adjustments */
+header[data-testid="stHeader"] {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #FF6B00;
+}
+
+/* Sidebar Customization - Crisp White with Orange Accents */
 section[data-testid="stSidebar"] {
-    background-color: #0A192F;
-    border-right: 1px solid #1E293B;
+    background-color: #FFFFFF;
+    border-right: 1px solid #E2E8F0;
 }
 
-/* Control Room Header Banner */
-.ops-banner {
-    background: linear-gradient(135deg, #0A192F 0%, #112240 60%, #0F3854 100%);
-    border: 1px solid #1E3A5F;
-    border-radius: 12px;
-    padding: 22px 28px;
-    margin-bottom: 24px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.5rem;
 }
 
-.ops-title-block h1 {
-    font-size: 26px;
-    font-weight: 800;
-    color: #F8FAFC;
-    margin: 0;
-    letter-spacing: -0.5px;
+/* Sidebar Branding Card */
+.hackathon-sidebar-card {
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+    border: 1px solid #FED7AA;
+    border-left: 4px solid #FF6B00;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.08);
 }
 
-.ops-title-block p {
-    font-size: 13px;
-    color: #94A3B8;
-    margin: 4px 0 0 0;
-    font-weight: 500;
+/* Primary Streamlit Buttons - Ahmedabad Orange */
+div.stButton > button[kind="primary"],
+div.stButton > button:first-child:not([kind="secondary"]) {
+    background: linear-gradient(135deg, #FF6B00 0%, #EA580C 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 18px !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25) !important;
+    transition: all 0.2s ease !important;
 }
 
-.ops-live-badge {
-    background: rgba(13, 148, 136, 0.15);
-    border: 1px solid #14B8A6;
-    color: #2DD4BF;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+div.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.35) !important;
 }
 
-.ops-live-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #2DD4BF;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #2DD4BF;
+/* Download Buttons */
+div.stDownloadButton > button {
+    background: linear-gradient(135deg, #FF6B00 0%, #EA580C 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.25) !important;
 }
 
-/* Top Navigation Tabs Styling */
+/* Tabs Navigation - White and Ahmedabad Orange Pill Style */
 .stTabs [data-baseweb="tab-list"] {
     gap: 8px;
-    background-color: #0A192F;
+    background-color: #F1F5F9;
     padding: 6px;
-    border-radius: 10px;
-    border: 1px solid #1E293B;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 18px;
 }
 
 .stTabs [data-baseweb="tab"] {
-    height: 42px;
-    padding: 0 20px;
+    height: 44px;
+    padding: 0 22px;
     background-color: transparent;
-    border-radius: 6px;
-    color: #94A3B8;
+    border-radius: 8px;
+    color: #475569;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 13.5px;
     border: none;
     transition: all 0.2s ease;
 }
 
+.stTabs [data-baseweb="tab"]:hover {
+    background-color: #E2E8F0;
+    color: #0F172A;
+}
+
 .stTabs [aria-selected="true"] {
-    background-color: #14B8A6 !important;
-    color: #0A192F !important;
+    background: linear-gradient(135deg, #FF6B00 0%, #EA580C 100%) !important;
+    color: #FFFFFF !important;
     font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.28) !important;
 }
 
-/* Metric KPI Cards */
-.kpi-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-}
-
+/* Metric KPI Cards (White & Orange) */
 .kpi-card {
-    background: #0F172A;
-    border: 1px solid #1E293B;
-    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid #FED7AA;
+    border-radius: 12px;
     padding: 18px 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .kpi-card:hover {
-    border-color: #0D9488;
+    border-color: #FF6B00;
     transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.12);
 }
 
 .kpi-top {
@@ -140,23 +136,23 @@ section[data-testid="stSidebar"] {
 }
 
 .kpi-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #94A3B8;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #64748B;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
 }
 
 .kpi-icon {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .kpi-value {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 800;
-    color: #F8FAFC;
+    color: #0F172A;
     line-height: 1.1;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 .kpi-sub {
@@ -165,69 +161,88 @@ section[data-testid="stSidebar"] {
     margin-top: 6px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
-/* Operator Status Badges */
-.badge-metro {
-    background: rgba(56, 189, 248, 0.15);
-    border: 1px solid #38BDF8;
-    color: #38BDF8;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
+/* Section Titles with Orange Underline Indicator */
+.section-title {
+    display: flex;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
     font-weight: 700;
+    color: #0F172A;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #FED7AA;
 }
 
-.badge-brts {
-    background: rgba(20, 184, 166, 0.15);
-    border: 1px solid #14B8A6;
-    color: #2DD4BF;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
+.section-title span {
+    border-bottom: 3px solid #FF6B00;
+    padding-bottom: 7px;
+    margin-bottom: -10px;
 }
 
-.badge-amts {
-    background: rgba(245, 158, 11, 0.15);
-    border: 1px solid #F59E0B;
-    color: #FBBF24;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
+/* Operator Status Cards */
+.op-card-metro {
+    background: #FFFFFF;
+    border: 1px solid #FED7AA;
+    border-top: 4px solid #FF6B00;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.06);
 }
 
-/* Exception Cards */
+.op-card-brts {
+    background: #FFFFFF;
+    border: 1px solid #CCFBF1;
+    border-top: 4px solid #0D9488;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.06);
+}
+
+.op-card-amts {
+    background: #FFFFFF;
+    border: 1px solid #FEF3C7;
+    border-top: 4px solid #D97706;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.06);
+}
+
+/* Exception Cards (White & Elevated) */
 .exception-box {
-    background: #0F172A;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 16px;
-    border-left: 5px solid;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 18px;
+    border-left: 6px solid;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #F1F5F9;
+    border-right: 1px solid #F1F5F9;
+    border-bottom: 1px solid #F1F5F9;
+    transition: transform 0.2s ease;
+}
+
+.exception-box:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .exception-critical {
     border-left-color: #EF4444;
-    border-top: 1px solid rgba(239, 68, 68, 0.3);
-    border-right: 1px solid rgba(239, 68, 68, 0.2);
-    border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+    background: linear-gradient(180deg, #FFFDFD 0%, #FFFFFF 100%);
 }
 
 .exception-warning {
     border-left-color: #F59E0B;
-    border-top: 1px solid rgba(245, 158, 11, 0.3);
-    border-right: 1px solid rgba(245, 158, 11, 0.2);
-    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+    background: linear-gradient(180deg, #FFFDF5 0%, #FFFFFF 100%);
 }
 
 .exception-info {
-    border-left-color: #3B82F6;
-    border-top: 1px solid rgba(59, 130, 246, 0.3);
-    border-right: 1px solid rgba(59, 130, 246, 0.2);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    border-left-color: #0284C7;
+    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
 }
 
 .ex-header {
@@ -238,10 +253,11 @@ section[data-testid="stSidebar"] {
 }
 
 .ex-title {
-    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
     font-weight: 700;
-    color: #F8FAFC;
-    margin: 0;
+    color: #0F172A;
+    margin: 4px 0 0 0;
 }
 
 .pill-crit {
@@ -249,7 +265,7 @@ section[data-testid="stSidebar"] {
     color: #FFFFFF;
     font-size: 11px;
     font-weight: 800;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -257,75 +273,119 @@ section[data-testid="stSidebar"] {
 
 .pill-warn {
     background: #F59E0B;
-    color: #000000;
+    color: #FFFFFF;
     font-size: 11px;
     font-weight: 800;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .ex-observation {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12px 16px;
     font-size: 13.5px;
-    color: #CBD5E1;
-    margin-bottom: 12px;
+    color: #334155;
+    margin-bottom: 14px;
     line-height: 1.5;
 }
 
 .evidence-box {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid #334155;
-    border-radius: 6px;
-    padding: 10px 14px;
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #7C2D12;
     margin-bottom: 12px;
-    font-size: 12.5px;
-    color: #94A3B8;
+}
+
+.hypothesis-box {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #14532D;
+    margin-bottom: 12px;
 }
 
 .action-box {
-    background: rgba(20, 184, 166, 0.08);
-    border-left: 3px solid #14B8A6;
-    padding: 10px 14px;
-    border-radius: 0 6px 6px 0;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 8px;
+    padding: 14px 18px;
     font-size: 13px;
-    color: #E2E8F0;
-    margin-top: 10px;
+    color: #78350F;
 }
 
-/* Upload Cards */
-.upload-card {
-    background: #0F172A;
-    border: 1px dashed #334155;
+/* Realistic Landing Page Styles */
+.landing-hero-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.12);
+    border: 2px solid #FED7AA;
+}
+
+.landing-overlay-card {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(254, 215, 170, 0.8);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.metro-badge-tag {
+    background: linear-gradient(135deg, #FF6B00 0%, #EA580C 100%);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.corridor-pill {
+    background: #FFFFFF;
+    border: 1px solid #FED7AA;
     border-radius: 10px;
-    padding: 18px;
-    text-align: center;
+    padding: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     transition: all 0.2s ease;
 }
 
-.upload-card:hover {
-    border-color: #14B8A6;
-    background: #111E38;
+.corridor-pill:hover {
+    border-color: #FF6B00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.1);
 }
 
-/* Section Headings */
-.section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #F8FAFC;
-    margin: 20px 0 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+/* Expander Styling */
+.streamlit-expanderHeader {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 8px !important;
+    color: #0F172A !important;
+    font-weight: 600 !important;
 }
 
-/* Hackathon Badge in Sidebar */
-.hackathon-sidebar-card {
-    background: #0F1D38;
-    border: 1px solid #1E3A5F;
-    border-radius: 8px;
-    padding: 14px;
-    margin-bottom: 16px;
+/* Plotly Chart Card Container */
+.chart-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
 </style>
 """

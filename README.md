@@ -47,7 +47,8 @@ Public transit authorities spend **3+ hours every morning** manually reconciling
 <br/>
 
 <div align="center">
-  <img src="assets/dashboard_preview.jpg" alt="TransitPulse AI Executive Dashboard Preview" width="94%" style="border-radius: 10px; border: 1px solid #1E293B; box-shadow: 0 8px 20px rgba(0,0,0,0.4);" />
+  <img src="assets/ahmedabad_metro_hero.jpg" alt="Ahmedabad Metro (GMRC) Landing Hero Viaduct" width="94%" style="border-radius: 12px; border: 2px solid #FED7AA; box-shadow: 0 10px 30px rgba(255, 107, 0, 0.15);" />
+  <p><em>Ahmedabad Metro (GMRC) Elevated Viaduct Network over Ahmedabad & Sabarmati Riverfront</em></p>
 </div>
 
 ---
@@ -86,7 +87,7 @@ flowchart LR
 ## 🛠️ Tech Stack & Highlights
 
 * **Language & Runtime:** Python 3.10+
-* **Frontend:** Streamlit *(Dark Navy `#0A192F` & Teal `#14B8A6` Control Room UI)*
+* **Frontend & Landing Portal:** Streamlit *(White & Ahmedabad Metro Orange `#FF6B00` UI with Realistic Viaduct Hero)*
 * **Data & Analytics:** Pandas & NumPy *(Pre-flight validation, multi-modal consolidation, weekday baselines)*
 * **Visualizations:** Plotly *(Ridership trends, availability gauges, delay waterfalls)*
 * **PDF Briefing Engine:** ReportLab 4.x *(Direct in-memory 1-page vector PDF compiler)*
