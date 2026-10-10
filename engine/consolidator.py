@@ -21,6 +21,21 @@ class ConsolidatedData:
         self.daily_citywide_summary = self._build_daily_citywide_summary()
         self.route_level_df = unified_df.copy()
 
+    @property
+    def total_records(self) -> int:
+        """Total row count across all combined feeds."""
+        return len(self.raw_df)
+
+    @property
+    def route_count(self) -> int:
+        """Total distinct stations and routes across all feeds."""
+        return self.raw_df["station_or_route"].nunique() if "station_or_route" in self.raw_df else 0
+
+    @property
+    def date_range_str(self) -> str:
+        """Formatted date span of the consolidated historical warehouse."""
+        return f"{self.dates[0]} to {self.dates[-1]}" if self.dates else ""
+
     def _build_daily_operator_summary(self) -> pd.DataFrame:
         """Calculates operator-level aggregated metrics for every date."""
         def agg_operator(group):
