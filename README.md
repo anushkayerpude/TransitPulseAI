@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/ahmedabad_metro_hero.jpg" alt="Ahmedabad Metro (GMRC) TransitPulse AI Operations Portal" width="100%" style="border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px -10px rgba(255, 107, 0, 0.35);" />
-
 # 🚇 TransitPulse AI
 ### AI-Powered Public Transport Operations Intelligence & Two-Minute Morning Briefing System
 
