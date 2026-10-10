@@ -10,6 +10,7 @@ Theme: White & Ahmedabad Metro Orange (#FF6B00) Design System
 import os
 import io
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from datetime import datetime
 
@@ -20,6 +21,13 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Load animated doodle metro SVG
+doodle_svg_path = os.path.join(os.path.dirname(__file__), "assets", "doodle_metro_full.svg")
+doodle_svg_code = ""
+if os.path.exists(doodle_svg_path):
+    with open(doodle_svg_path, "r", encoding="utf-8") as f:
+        doodle_svg_code = f.read()
 
 from config import (
     APP_NAME, APP_SUBTITLE, HACKATHON_EVENT, PROBLEM_STATEMENT, VERSION,
@@ -41,6 +49,7 @@ from engine.pdf_generator import generate_pdf_brief, generate_html_brief
 
 # Inject custom CSS
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+
 
 # -----------------------------------------------------------------------------
 # SESSION STATE INITIALIZATION
@@ -189,6 +198,15 @@ with st.sidebar:
         st.rerun()
 
     st.markdown("---")
+    st.markdown("### 🖥️ Display Experience")
+    view_layout = st.radio(
+        "Presentation Mode",
+        ["📜 Full-Page Scroll Motion (Default)", "📑 Classic Tabbed View"],
+        index=0,
+        help="Full-page 100vh scroll-motion layout vs classic tabbed panels."
+    )
+
+    st.markdown("---")
     st.markdown("### ⚙️ Analytical Parameters")
     
     baseline_mode = st.selectbox(
@@ -284,30 +302,34 @@ elif st.session_state.consolidated_data is not None and st.session_state.active_
     st.session_state.active_params = current_params
 
 
-# -----------------------------------------------------------------------------
-# APP NAVIGATION TABS (FEATURING LANDING PAGE AS TAB 1)
-# -----------------------------------------------------------------------------
-tab_landing, tab_overview, tab_import, tab_intel, tab_brief = st.tabs([
-    "🏠 Metro Landing Portal",
-    "📊 Executive Overview",
-    "📥 Data Import & Audit",
-    "🔍 Operations Intelligence",
-    "📋 Two-Minute Daily Brief"
-])
 
-# =============================================================================
-# TAB 1: REALISTIC LANDING PAGE WITH AHMEDABAD METRO
-# =============================================================================
-with tab_landing:
-    # 1. Full-Bleed Realistic Ahmedabad Metro Hero Section
+
+# -----------------------------------------------------------------------------
+# MODULAR SECTION RENDERERS (SUPPORTING SCROLL-MOTION AND TABBED VIEWS)
+# -----------------------------------------------------------------------------
+
+def render_section_1_hero():
+    """Section 1: Full-Screen Doodly Metro Hero & Launchpad"""
+    # 1. Full-Screen Animated Doodly Metro (cruising from left to right)
+    if doodle_svg_code:
+        components.html(
+            f"""
+            <div style="width: 100%; height: 520px; overflow: hidden; border-radius: 16px; box-shadow: 0 8px 32px rgba(255,107,0,0.12); border: 2px solid #FED7AA; background: #FFFBF7; margin-bottom: 20px;">
+                {doodle_svg_code}
+            </div>
+            """,
+            height=535,
+        )
+
+    # 2. Executive Portal Identity Banner
     st.markdown("""
     <div class="landing-hero-container">
         <div style="position: relative;">
             <img src="https://raw.githubusercontent.com/anushkayerpude/TransitPulseAI/main/assets/ahmedabad_metro_hero.jpg" 
                  onerror="this.onerror=null; this.src='assets/ahmedabad_metro_hero.jpg';"
-                 style="width: 100%; max-height: 460px; object-fit: cover; display: block;" 
+                 style="width: 100%; max-height: 400px; object-fit: cover; display: block; border-radius: 14px;" 
                  alt="Ahmedabad Metro (GMRC) Train on Viaduct" />
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.65) 60%, rgba(15,23,42,0) 100%); padding: 32px 36px 24px 36px;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.65) 60%, rgba(15,23,42,0) 100%); padding: 30px 36px 22px 36px; border-radius: 0 0 14px 14px;">
                 <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
                     <span class="metro-badge-tag">🚇 GMRC AHMEDABAD METRO</span>
                     <span style="background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); color: #FFFFFF; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3);">
@@ -317,10 +339,10 @@ with tab_landing:
                         PS-13: TWO-MINUTE MORNING BRIEF
                     </span>
                 </div>
-                <h1 style="color: #FFFFFF; font-family: 'Outfit', sans-serif; font-size: 34px; font-weight: 800; margin: 0 0 8px 0; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                <h1 style="color: #FFFFFF; font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 800; margin: 0 0 8px 0; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
                     Public Transport Operations Intelligence Portal
                 </h1>
-                <p style="color: #E2E8F0; font-size: 15.5px; max-width: 820px; margin: 0; line-height: 1.5; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
+                <p style="color: #E2E8F0; font-size: 15px; max-width: 820px; margin: 0; line-height: 1.5; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
                     Harmonizing daily operational feeds across Gujarat Metro Rail Corporation, Janmarg BRTS, and AMTS. 
                     Detecting corridor deviations, isolating signaling bottlenecks, and synthesizing executive standup briefings in under 120 seconds.
                 </p>
@@ -329,7 +351,7 @@ with tab_landing:
     </div>
     """, unsafe_allow_html=True)
 
-    # 2. Quick Action Launchpad Cards
+    # 3. Quick Action Launchpad Cards
     st.markdown('<div class="section-title"><span>⚡ Quick Action Launchpad (One-Click Operations Presets)</span></div>', unsafe_allow_html=True)
     cta_col1, cta_col2, cta_col3 = st.columns(3)
     
@@ -346,7 +368,7 @@ with tab_landing:
             </p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("🚨 Load Incident Demo", use_container_width=True, type="primary"):
+        if st.button("🚨 Load Incident Demo", use_container_width=True, type="primary", key="landing_inc_btn"):
             load_sample_dataset("incident")
             st.rerun()
 
@@ -363,7 +385,7 @@ with tab_landing:
             </p>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("🟢 Load Baseline Demo", use_container_width=True):
+        if st.button("🟢 Load Baseline Demo", use_container_width=True, key="landing_base_btn"):
             load_sample_dataset("baseline")
             st.rerun()
 
@@ -388,7 +410,7 @@ with tab_landing:
             run_pipeline()
             st.rerun()
 
-    # 2.5 Live Telemetry Sentinel Banner (Instant Feedback on Backend Pipeline Execution)
+    # 4. Live Telemetry Sentinel Banner (Instant Feedback on Backend Pipeline Execution)
     st.markdown('<div class="section-title"><span>📡 Live Analytical Engine Sentinel (Real-Time Ingestion & Synthesis)</span></div>', unsafe_allow_html=True)
     if st.session_state.consolidated_data is not None:
         brief = st.session_state.morning_brief
@@ -456,23 +478,18 @@ with tab_landing:
         </div>
         """, unsafe_allow_html=True)
         
-        # Download and jump bar
-        dl_col1, dl_col2 = st.columns([1.2, 2.8])
-        with dl_col1:
-            pdf_bytes_landing = generate_pdf_brief(brief)
-            st.download_button(
-                label="📥 Download Executive 1-Page PDF",
-                data=pdf_bytes_landing,
-                file_name=f"TransitPulse_Daily_Brief_{target_date}.pdf",
-                mime="application/pdf",
-                type="primary",
-                key="landing_pdf_quick_btn",
-                use_container_width=True
-            )
-        with dl_col2:
-            st.info("💡 **Ready to drill down?** Explore interactive corridor charts in **📊 Executive Overview**, inspect root-cause hypotheses in **🔍 Operations Intelligence**, or review the management brief in **📋 Two-Minute Daily Brief**.")
+        # Download quick action
+        pdf_bytes_landing = generate_pdf_brief(brief)
+        st.download_button(
+            label="📥 Download Executive 1-Page Briefing PDF",
+            data=pdf_bytes_landing,
+            file_name=f"TransitPulse_Daily_Brief_{target_date}.pdf",
+            mime="application/pdf",
+            type="primary",
+            key="landing_pdf_quick_btn",
+            use_container_width=True
+        )
     else:
-        v_results = st.session_state.get("validation_results", {})
         st.markdown("""
         <div style="background: #FEF2F2; border: 2px solid #EF4444; border-radius: 12px; padding: 20px 24px; margin-bottom: 22px;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
@@ -490,8 +507,7 @@ with tab_landing:
             load_sample_dataset("incident")
             st.rerun()
 
-
-    # 3. Live Animated Track Status Monitor
+    # 5. Live Animated Track Status Monitor
     st.markdown('<div class="section-title"><span>🚊 Real-Time Metro Track & Signal Telemetry Simulation</span></div>', unsafe_allow_html=True)
     st.markdown("""
     <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 12px; padding: 14px; box-shadow: 0 4px 16px rgba(255, 107, 0, 0.05); margin-bottom: 24px;">
@@ -499,7 +515,7 @@ with tab_landing:
     </div>
     """, unsafe_allow_html=True)
 
-    # 4. Regional Transit Network Status Grid
+    # 6. Regional Transit Network Status Grid
     st.markdown('<div class="section-title"><span>🏙️ Gandhinagar & Ahmedabad Regional Transit Network Coverage</span></div>', unsafe_allow_html=True)
     net_col1, net_col2, net_col3 = st.columns(3)
     
@@ -559,7 +575,7 @@ with tab_landing:
         </div>
         """, unsafe_allow_html=True)
 
-    # 5. Core Operational Architecture Pillars (PS-13)
+    # 7. Core Operational Architecture Pillars (PS-13)
     st.markdown('<div class="section-title"><span>💡 Core Architecture Pillars (PS-13: The Two-Minute Morning Brief)</span></div>', unsafe_allow_html=True)
     feat_cols = st.columns(4)
     
@@ -578,7 +594,7 @@ with tab_landing:
         st.markdown("""
         <div class="kpi-card" style="text-align: center; border-top: 3px solid #0D9488;">
             <div style="font-size: 24px; margin-bottom: 6px;">📅</div>
-            <strong style="color: #0F172A; font-size: 14px;">Weekday-Adjusted Baselining</strong>
+            <strong style="color: #0F172A; font-size: 14px;">Weekday Baselining</strong>
             <p style="font-size: 12px; color: #64748B; margin-top: 6px;">
                 Compares Monday to past Mondays. Eliminates false alarms caused by normal weekend dips vs genuine operational distress.
             </p>
@@ -607,131 +623,130 @@ with tab_landing:
         </div>
         """, unsafe_allow_html=True)
 
-# =============================================================================
-# TAB 2: EXECUTIVE OVERVIEW
-# =============================================================================
-with tab_overview:
+
+def render_section_2_overview():
+    """Section 2: Executive Overview & Multi-Modal Telemetry"""
     if st.session_state.consolidated_data is None:
-        st.warning("⚠️ Data feeds require attention. Check the **Data Import & Audit** tab to resolve errors.")
-    else:
-        brief = st.session_state.morning_brief
-        consolidated = st.session_state.consolidated_data
-        target_date = consolidated.latest_date
-        metrics = consolidated.get_date_metrics(target_date)
-        city_m = metrics.get("citywide", {})
-        op_m = metrics.get("operators", {})
-        
-        # Row 1: High Level KPIs
-        crit_count = brief.get("critical_exceptions_count", 0)
-        warn_count = brief.get("warning_exceptions_count", 0)
-        health_score = brief.get("overall_health_score", 95.0)
-        
-        kpi_cols = st.columns(5)
-        with kpi_cols[0]:
-            render_kpi_metric(
-                "Transit Health Score",
-                f"{health_score:.0f}/100",
-                brief.get("status_label", "NOMINAL"),
-                icon="🩺",
-                is_alert=(health_score < 80)
-            )
-        with kpi_cols[1]:
-            render_kpi_metric(
-                "Citywide Ridership",
-                f"{int(city_m.get('total_ridership', 0)):,}",
-                "Combined Metro, BRTS, AMTS",
-                icon="👥",
-                delta_str=f"{city_m.get('reporting_operators_count', 3)} Operators Live"
-            )
-        with kpi_cols[2]:
-            render_kpi_metric(
-                "Network Availability",
-                f"{city_m.get('network_availability_pct', 0):.1f}%",
-                f"{int(city_m.get('total_completed', 0)):,} / {int(city_m.get('total_scheduled', 0)):,} trips",
-                icon="⚡",
-                is_alert=(city_m.get("network_availability_pct", 100) < 90)
-            )
-        with kpi_cols[3]:
-            render_kpi_metric(
-                "Average Network Delay",
-                f"{city_m.get('citywide_avg_delay_minutes', 0):.1f} min",
-                "Weighted transit delay",
-                icon="⏱️",
-                is_alert=(city_m.get("citywide_avg_delay_minutes", 0) > 5.0)
-            )
-        with kpi_cols[4]:
-            render_kpi_metric(
-                "Active Exceptions",
-                f"{crit_count + warn_count}",
-                f"{crit_count} Critical, {warn_count} Warnings",
-                icon="🚨",
-                is_alert=(crit_count > 0)
+        st.warning("⚠️ Data feeds require attention. Scroll to **Data Import & Audit** or load a demo dataset to resolve.")
+        return
+
+    brief = st.session_state.morning_brief
+    consolidated = st.session_state.consolidated_data
+    target_date = consolidated.latest_date
+    metrics = consolidated.get_date_metrics(target_date)
+    city_m = metrics.get("citywide", {})
+    op_m = metrics.get("operators", {})
+    
+    # Row 1: High Level KPIs
+    crit_count = brief.get("critical_exceptions_count", 0)
+    warn_count = brief.get("warning_exceptions_count", 0)
+    health_score = brief.get("overall_health_score", 95.0)
+    
+    kpi_cols = st.columns(5)
+    with kpi_cols[0]:
+        render_kpi_metric(
+            "Transit Health Score",
+            f"{health_score:.0f}/100",
+            brief.get("status_label", "NOMINAL"),
+            icon="🩺",
+            is_alert=(health_score < 80)
+        )
+    with kpi_cols[1]:
+        render_kpi_metric(
+            "Citywide Ridership",
+            f"{int(city_m.get('total_ridership', 0)):,}",
+            "Combined Metro, BRTS, AMTS",
+            icon="👥",
+            delta_str=f"{city_m.get('reporting_operators_count', 3)} Operators Live"
+        )
+    with kpi_cols[2]:
+        render_kpi_metric(
+            "Network Availability",
+            f"{city_m.get('network_availability_pct', 0):.1f}%",
+            f"{int(city_m.get('total_completed', 0)):,} / {int(city_m.get('total_scheduled', 0)):,} trips",
+            icon="⚡",
+            is_alert=(city_m.get("network_availability_pct", 100) < 90)
+        )
+    with kpi_cols[3]:
+        render_kpi_metric(
+            "Average Network Delay",
+            f"{city_m.get('citywide_avg_delay_minutes', 0):.1f} min",
+            "Weighted transit delay",
+            icon="⏱️",
+            is_alert=(city_m.get("citywide_avg_delay_minutes", 0) > 5.0)
+        )
+    with kpi_cols[4]:
+        render_kpi_metric(
+            "Active Exceptions",
+            f"{crit_count + warn_count}",
+            f"{crit_count} Critical, {warn_count} Warnings",
+            icon="🚨",
+            is_alert=(crit_count > 0)
+        )
+
+    # Row 2: Operator Snapshot Cards
+    st.markdown('<div class="section-title"><span>🚏 Multi-Modal Operator Status Overview</span></div>', unsafe_allow_html=True)
+    op_cols = st.columns(3)
+    for i, op_name in enumerate(["Metro", "BRTS", "AMTS"]):
+        with op_cols[i]:
+            m = op_m.get(op_name, {})
+            cfg = OPERATOR_CONFIG.get(op_name, {})
+            r_count = int(m.get("ridership", 0))
+            sched = int(m.get("scheduled_services", 0))
+            comp = int(m.get("completed_services", 0))
+            avail = m.get("service_availability_pct", 0)
+            delay = m.get("average_delay_minutes", 0)
+            
+            # Check status
+            is_op_crit = any(e.raw.operator == op_name and e.raw.severity == "CRITICAL" for e in st.session_state.explained_exceptions)
+            is_op_warn = any(e.raw.operator == op_name and e.raw.severity == "WARNING" for e in st.session_state.explained_exceptions)
+            status_badge = '<span class="pill-crit">🚨 CRITICAL</span>' if is_op_crit else (
+                '<span class="pill-warn">⚠️ REVIEW</span>' if is_op_warn else '<span style="color:#10B981; font-weight:800; font-size:11.5px; background: #ECFDF5; padding: 3px 8px; border-radius: 12px; border: 1px solid #A7F3D0;">✅ NOMINAL</span>'
             )
 
-        # Row 2: Operator Snapshot Cards (White & Orange Theme)
-        st.markdown('<div class="section-title"><span>🚏 Multi-Modal Operator Status Overview</span></div>', unsafe_allow_html=True)
-        op_cols = st.columns(3)
-        for i, op_name in enumerate(["Metro", "BRTS", "AMTS"]):
-            with op_cols[i]:
-                m = op_m.get(op_name, {})
-                cfg = OPERATOR_CONFIG.get(op_name, {})
-                r_count = int(m.get("ridership", 0))
-                sched = int(m.get("scheduled_services", 0))
-                comp = int(m.get("completed_services", 0))
-                avail = m.get("service_availability_pct", 0)
-                delay = m.get("average_delay_minutes", 0)
-                
-                # Check status
-                is_op_crit = any(e.raw.operator == op_name and e.raw.severity == "CRITICAL" for e in st.session_state.explained_exceptions)
-                is_op_warn = any(e.raw.operator == op_name and e.raw.severity == "WARNING" for e in st.session_state.explained_exceptions)
-                status_badge = '<span class="pill-crit">🚨 CRITICAL</span>' if is_op_crit else (
-                    '<span class="pill-warn">⚠️ REVIEW</span>' if is_op_warn else '<span style="color:#10B981; font-weight:800; font-size:11.5px; background: #ECFDF5; padding: 3px 8px; border-radius: 12px; border: 1px solid #A7F3D0;">✅ NOMINAL</span>'
-                )
-
-                st.markdown(f"""
-                <div class="kpi-card" style="border-top: 4px solid {cfg.get('color', '#FF6B00')};">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="font-weight: 800; font-size: 16px; color: #0F172A; font-family: 'Outfit', sans-serif;">
-                            {cfg.get('icon', '')} {op_name}
-                        </span>
-                        {status_badge}
+            st.markdown(f"""
+            <div class="kpi-card" style="border-top: 4px solid {cfg.get('color', '#FF6B00')};">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 800; font-size: 16px; color: #0F172A; font-family: 'Outfit', sans-serif;">
+                        {cfg.get('icon', '')} {op_name}
+                    </span>
+                    {status_badge}
+                </div>
+                <div style="font-size: 11.5px; color: #64748B; margin-bottom: 12px; font-weight: 500;">{cfg.get('full_name', '')}</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12.5px;">
+                    <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
+                        <span style="color: #64748B;">Ridership:</span><br/>
+                        <strong style="color: #0F172A; font-size: 15px;">{r_count:,}</strong>
                     </div>
-                    <div style="font-size: 11.5px; color: #64748B; margin-bottom: 12px; font-weight: 500;">{cfg.get('full_name', '')}</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12.5px;">
-                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
-                            <span style="color: #64748B;">Ridership:</span><br/>
-                            <strong style="color: #0F172A; font-size: 15px;">{r_count:,}</strong>
-                        </div>
-                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
-                            <span style="color: #64748B;">Availability:</span><br/>
-                            <strong style="color: {'#EF4444' if avail < 85 else '#0D9488'}; font-size: 15px;">{avail:.1f}%</strong>
-                        </div>
-                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
-                            <span style="color: #64748B;">Completed Trips:</span><br/>
-                            <strong style="color: #334155;">{comp:,} / {sched:,}</strong>
-                        </div>
-                        <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
-                            <span style="color: #64748B;">Avg Delay:</span><br/>
-                            <strong style="color: {'#EF4444' if delay > 6 else '#334155'}; font-size: 15px;">{delay:.1f} min</strong>
-                        </div>
+                    <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
+                        <span style="color: #64748B;">Availability:</span><br/>
+                        <strong style="color: {'#EF4444' if avail < 85 else '#0D9488'}; font-size: 15px;">{avail:.1f}%</strong>
+                    </div>
+                    <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
+                        <span style="color: #64748B;">Completed Trips:</span><br/>
+                        <strong style="color: #334155;">{comp:,} / {sched:,}</strong>
+                    </div>
+                    <div style="background: #F8FAFC; padding: 8px 10px; border-radius: 6px;">
+                        <span style="color: #64748B;">Avg Delay:</span><br/>
+                        <strong style="color: {'#EF4444' if delay > 6 else '#334155'}; font-size: 15px;">{delay:.1f} min</strong>
                     </div>
                 </div>
-                """, unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
 
-        # Row 3: Ridership Trend & Availability Visualizations in White & Orange
-        st.markdown('<div class="section-title"><span>📈 Citywide Multi-Modal Trends & Fleet Health</span></div>', unsafe_allow_html=True)
-        chart_col1, chart_col2 = st.columns([1.6, 1.0])
-        with chart_col1:
-            fig_trend = create_ridership_trend_chart(consolidated, highlight_date=target_date)
-            st.plotly_chart(fig_trend, use_container_width=True)
-        with chart_col2:
-            fig_avail = create_availability_bar_chart(op_m)
-            st.plotly_chart(fig_avail, use_container_width=True)
+    # Row 3: Ridership Trend & Availability Visualizations
+    st.markdown('<div class="section-title"><span>📈 Citywide Multi-Modal Trends & Fleet Health</span></div>', unsafe_allow_html=True)
+    chart_col1, chart_col2 = st.columns([1.6, 1.0])
+    with chart_col1:
+        fig_trend = create_ridership_trend_chart(consolidated, highlight_date=target_date)
+        st.plotly_chart(fig_trend, use_container_width=True)
+    with chart_col2:
+        fig_avail = create_availability_bar_chart(op_m)
+        st.plotly_chart(fig_avail, use_container_width=True)
 
-# =============================================================================
-# TAB 3: DATA IMPORT & VALIDATION
-# =============================================================================
-with tab_import:
+
+def render_section_3_audit():
+    """Section 3: Data Feeds & Pre-Flight Quality Sentinel Gate"""
     st.markdown('<div class="section-title"><span>📥 Operational Data Feeds & Pre-Flight Schema Audit</span></div>', unsafe_allow_html=True)
     
     st.markdown("""
@@ -759,7 +774,8 @@ with tab_import:
         "Ingestion Source Selection:",
         ["⚡ Use Built-in Datasets (GMRC Metro + Janmarg BRTS + AMTS) [Active]", "📁 Upload Custom CSV Feeds (Optional / Bring Your Own Data)"],
         index=0,
-        horizontal=True
+        horizontal=True,
+        key="audit_feed_mode_radio"
     )
 
     if "Built-in" in feed_mode:
@@ -824,13 +840,13 @@ with tab_import:
             d_col1, d_col2, d_col3 = st.columns(3)
             with d_col1:
                 with open("data/incident/metro_incident.csv", "rb") as f:
-                    st.download_button("📥 Metro Sample CSV", f.read(), file_name="metro_sample.csv", mime="text/csv", use_container_width=True)
+                    st.download_button("📥 Metro Sample CSV", f.read(), file_name="metro_sample.csv", mime="text/csv", use_container_width=True, key="dl_metro_csv_key")
             with d_col2:
                 with open("data/incident/brts_incident.csv", "rb") as f:
-                    st.download_button("📥 BRTS Sample CSV", f.read(), file_name="brts_sample.csv", mime="text/csv", use_container_width=True)
+                    st.download_button("📥 BRTS Sample CSV", f.read(), file_name="brts_sample.csv", mime="text/csv", use_container_width=True, key="dl_brts_csv_key")
             with d_col3:
                 with open("data/incident/amts_incident.csv", "rb") as f:
-                    st.download_button("📥 AMTS Sample CSV", f.read(), file_name="amts_sample.csv", mime="text/csv", use_container_width=True)
+                    st.download_button("📥 AMTS Sample CSV", f.read(), file_name="amts_sample.csv", mime="text/csv", use_container_width=True, key="dl_amts_csv_key")
 
         # Three Upload Slots
         up_col1, up_col2, up_col3 = st.columns(3)
@@ -861,7 +877,7 @@ with tab_import:
 
         # Action Button
         st.markdown("<br/>", unsafe_allow_html=True)
-        if st.button("🚀 Validate & Consolidate Custom Feeds", type="primary", use_container_width=True):
+        if st.button("🚀 Validate & Consolidate Custom Feeds", type="primary", use_container_width=True, key="run_custom_audit_btn"):
             with st.spinner("Executing multi-schema validation and statistical baseline comparison..."):
                 success = run_pipeline()
                 if success:
@@ -915,163 +931,276 @@ with tab_import:
                     for err in v.errors:
                         st.error(f"**Issue:** {err['issue']}\n\n💡 **Action:** {err['fix']}")
 
-# =============================================================================
-# TAB 4: OPERATIONS INTELLIGENCE
-# =============================================================================
-with tab_intel:
+
+def render_section_4_intel():
+    """Section 4: Operations Intelligence & Diagnostic Bottlenecks"""
     if st.session_state.consolidated_data is None:
         st.warning("⚠️ Please upload valid datasets and run the analysis pipeline first.")
-    else:
-        consolidated = st.session_state.consolidated_data
-        target_date = consolidated.latest_date
-        metrics = consolidated.get_date_metrics(target_date)
-        op_m = metrics.get("operators", {})
-        exceptions = st.session_state.explained_exceptions
+        return
 
-        st.markdown('<div class="section-title"><span>🔍 Diagnostic Comparisons & Delay Analysis</span></div>', unsafe_allow_html=True)
+    consolidated = st.session_state.consolidated_data
+    target_date = consolidated.latest_date
+    metrics = consolidated.get_date_metrics(target_date)
+    op_m = metrics.get("operators", {})
+    exceptions = st.session_state.explained_exceptions
+
+    st.markdown('<div class="section-title"><span>🔍 Diagnostic Comparisons & Delay Analysis</span></div>', unsafe_allow_html=True)
+    
+    # Row 1 Charts: Delay Comparison & Corridor Breakdown
+    c_col1, c_col2 = st.columns([1.1, 1.4])
+    with c_col1:
+        hist_delays = {}
+        for op in consolidated.operators:
+            op_raw = consolidated.raw_df[(consolidated.raw_df["operator"] == op) & (consolidated.raw_df["date"] < target_date)]
+            hist_delays[op] = round(op_raw["average_delay_minutes"].mean(), 1) if not op_raw.empty else 2.0
+        fig_delay = create_delay_comparison_chart(op_m, hist_delays)
+        st.plotly_chart(fig_delay, use_container_width=True)
         
-        # Row 1 Charts: Delay Comparison & Corridor Breakdown
-        c_col1, c_col2 = st.columns([1.1, 1.4])
-        with c_col1:
-            hist_delays = {}
-            for op in consolidated.operators:
-                op_raw = consolidated.raw_df[(consolidated.raw_df["operator"] == op) & (consolidated.raw_df["date"] < target_date)]
-                hist_delays[op] = round(op_raw["average_delay_minutes"].mean(), 1) if not op_raw.empty else 2.0
-            fig_delay = create_delay_comparison_chart(op_m, hist_delays)
-            st.plotly_chart(fig_delay, use_container_width=True)
-            
-        with c_col2:
-            fig_corridor = create_corridor_breakdown_chart(consolidated.raw_df, target_date)
-            st.plotly_chart(fig_corridor, use_container_width=True)
+    with c_col2:
+        fig_corridor = create_corridor_breakdown_chart(consolidated.raw_df, target_date)
+        st.plotly_chart(fig_corridor, use_container_width=True)
 
-        # Row 2: Prioritized Operational Exceptions Feed
-        st.markdown('<div class="section-title"><span>🚨 Prioritized Exception Feed (Evidence-Backed)</span></div>', unsafe_allow_html=True)
-        st.caption("Ranked by statistical deviation severity. Click any exception to review evidence and hypotheses:")
+    # Row 2: Prioritized Operational Exceptions Feed
+    st.markdown('<div class="section-title"><span>🚨 Prioritized Exception Feed (Evidence-Backed)</span></div>', unsafe_allow_html=True)
+    st.caption("Ranked by statistical deviation severity. Click any exception to review evidence and hypotheses:")
 
-        # Filters
-        f_col1, f_col2 = st.columns([1, 2])
-        with f_col1:
-            op_filter = st.selectbox("Filter by Operator", ["All Operators", "Metro", "BRTS", "AMTS"])
-        with f_col2:
-            sev_filter = st.selectbox("Filter by Severity", ["All Severities", "CRITICAL Only", "WARNING Only"])
+    # Filters
+    f_col1, f_col2 = st.columns([1, 2])
+    with f_col1:
+        op_filter = st.selectbox("Filter by Operator", ["All Operators", "Metro", "BRTS", "AMTS"], key="intel_op_filter_select")
+    with f_col2:
+        sev_filter = st.selectbox("Filter by Severity", ["All Severities", "CRITICAL Only", "WARNING Only"], key="intel_sev_filter_select")
 
-        filtered_exceptions = exceptions
-        if op_filter != "All Operators":
-            filtered_exceptions = [e for e in filtered_exceptions if e.raw.operator == op_filter]
-        if sev_filter == "CRITICAL Only":
-            filtered_exceptions = [e for e in filtered_exceptions if e.raw.severity == "CRITICAL"]
-        elif sev_filter == "WARNING Only":
-            filtered_exceptions = [e for e in filtered_exceptions if e.raw.severity == "WARNING"]
+    filtered_exceptions = exceptions
+    if op_filter != "All Operators":
+        filtered_exceptions = [e for e in filtered_exceptions if e.raw.operator == op_filter]
+    if sev_filter == "CRITICAL Only":
+        filtered_exceptions = [e for e in filtered_exceptions if e.raw.severity == "CRITICAL"]
+    elif sev_filter == "WARNING Only":
+        filtered_exceptions = [e for e in filtered_exceptions if e.raw.severity == "WARNING"]
 
-        if not filtered_exceptions:
-            st.success("✅ No exceptions matching the selected criteria.")
-        else:
-            for idx, ex in enumerate(filtered_exceptions):
-                render_exception_card_streamlit(ex, idx)
+    if not filtered_exceptions:
+        st.success("✅ No exceptions matching the selected criteria.")
+    else:
+        for idx, ex in enumerate(filtered_exceptions):
+            render_exception_card_streamlit(ex, idx)
 
-        # Row 3: Inspect Raw Telemetry Warehouse
-        with st.expander("📋 Inspect Consolidated Multi-Modal Telemetry Warehouse", expanded=False):
-            st.caption("Consolidated tabular data with date filtering and CSV export:")
-            st.dataframe(
-                consolidated.raw_df,
-                use_container_width=True,
-                height=260
-            )
+    # Row 3: Inspect Raw Telemetry Warehouse
+    with st.expander("📋 Inspect Consolidated Multi-Modal Telemetry Warehouse", expanded=False):
+        st.caption("Consolidated tabular data with date filtering and CSV export:")
+        st.dataframe(
+            consolidated.raw_df,
+            use_container_width=True,
+            height=260
+        )
 
-# =============================================================================
-# TAB 5: TWO-MINUTE DAILY BRIEF (PS-13 CORE DELIVERABLE)
-# =============================================================================
-with tab_brief:
+
+def render_section_5_brief():
+    """Section 5: Two-Minute Daily Management Brief (PS-13)"""
     if st.session_state.morning_brief is None:
         st.warning("⚠️ Daily Brief will be generated once operational feeds are validated.")
-    else:
-        brief = st.session_state.morning_brief
-        consolidated = st.session_state.consolidated_data
-        target_date = consolidated.latest_date
-        city_m = brief.get("citywide_metrics", {})
-        op_m = brief.get("operator_metrics", {})
-        
-        # Action Bar with Export Buttons
-        export_col1, export_col2, export_col3 = st.columns([1.5, 1.2, 1.2])
-        with export_col1:
-            st.markdown(f"### 📋 Operations Brief: `{target_date}`")
-        with export_col2:
-            pdf_bytes = generate_pdf_brief(brief)
-            st.download_button(
-                label="📥 Download 1-Page PDF Brief",
-                data=pdf_bytes,
-                file_name=f"TransitPulse_Daily_Brief_{target_date}.pdf",
-                mime="application/pdf",
-                type="primary",
-                use_container_width=True
-            )
-        with export_col3:
-            html_content = generate_html_brief(brief)
-            st.download_button(
-                label="🌐 Export Printable HTML",
-                data=html_content,
-                file_name=f"TransitPulse_Daily_Brief_{target_date}.html",
-                mime="text/html",
-                use_container_width=True
-            )
+        return
 
-        st.markdown("---")
+    brief = st.session_state.morning_brief
+    consolidated = st.session_state.consolidated_data
+    target_date = consolidated.latest_date
+    city_m = brief.get("citywide_metrics", {})
+    op_m = brief.get("operator_metrics", {})
+    
+    # Action Bar with Export Buttons
+    export_col1, export_col2, export_col3 = st.columns([1.5, 1.2, 1.2])
+    with export_col1:
+        st.markdown(f"### 📋 Operations Brief: `{target_date}`")
+    with export_col2:
+        pdf_bytes = generate_pdf_brief(brief)
+        st.download_button(
+            label="📥 Download 1-Page PDF Brief",
+            data=pdf_bytes,
+            file_name=f"TransitPulse_Daily_Brief_{target_date}.pdf",
+            mime="application/pdf",
+            type="primary",
+            key="brief_tab_pdf_dl_btn",
+            use_container_width=True
+        )
+    with export_col3:
+        html_content = generate_html_brief(brief)
+        st.download_button(
+            label="🌐 Export Printable HTML",
+            data=html_content,
+            file_name=f"TransitPulse_Daily_Brief_{target_date}.html",
+            mime="text/html",
+            key="brief_tab_html_dl_btn",
+            use_container_width=True
+        )
 
-        # 1. Executive Narrative Box (White & Ahmedabad Orange)
-        health = brief.get("overall_health_score", 95.0)
+    st.markdown("---")
+
+    # 1. Executive Narrative Box
+    health = brief.get("overall_health_score", 95.0)
+    st.markdown(f"""
+    <div style="background: #FFF7ED; border: 1px solid #FED7AA; border-left: 6px solid #FF6B00; border-radius: 12px; padding: 22px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(255,107,0,0.06);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 13.5px; font-weight: 800; color: #EA580C; text-transform: uppercase; letter-spacing: 0.6px; font-family: 'Outfit', sans-serif;">
+                Executive Morning Standup Brief
+            </span>
+            <span style="font-size: 12.5px; font-weight: 800; color: {'#EF4444' if health < 80 else '#065F46'}; background: {'#FEF2F2' if health < 80 else '#ECFDF5'}; padding: 4px 12px; border-radius: 20px; border: 1px solid {'#FCA5A5' if health < 80 else '#A7F3D0'};">
+                Network Health: {health:.0f}/100 ({brief.get('status_label')})
+            </span>
+        </div>
+        <div style="font-size: 15px; color: #1E293B; line-height: 1.65;">
+            {brief.get('executive_narrative')}
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # 2. Operator Performance Breakdown Table
+    st.markdown("#### 🏢 Operator Fleet & Performance Breakdown")
+    table_rows = []
+    for op_name, m in op_m.items():
+        avail = m.get("service_availability_pct", 0)
+        delay = m.get("average_delay_minutes", 0)
+        st_badge = "CRITICAL" if (avail < 85 or delay > 6) else ("REVIEW" if (avail < 92 or delay > 4) else "NOMINAL")
+        table_rows.append({
+            "Operator": op_name,
+            "Reporting Units": f"{int(m.get('active_routes_count', 0))} Corridors/Routes",
+            "Ridership": f"{int(m.get('ridership', 0)):,}",
+            "Scheduled Trips": f"{int(m.get('scheduled_services', 0)):,}",
+            "Completed Trips": f"{int(m.get('completed_services', 0)):,}",
+            "Availability Rate": f"{avail:.1f}%",
+            "Avg Route Delay": f"{delay:.1f} min",
+            "Operational Status": st_badge
+        })
+    st.dataframe(pd.DataFrame(table_rows), use_container_width=True, hide_index=True)
+
+    # 3. Top Actionable Intelligence Items
+    st.markdown("<br/>", unsafe_allow_html=True)
+    st.markdown("#### 🎯 Priority Operations Action Checklist")
+    for act in brief.get("top_actions", []):
         st.markdown(f"""
-        <div style="background: #FFF7ED; border: 1px solid #FED7AA; border-left: 6px solid #FF6B00; border-radius: 12px; padding: 22px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(255,107,0,0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span style="font-size: 13.5px; font-weight: 800; color: #EA580C; text-transform: uppercase; letter-spacing: 0.6px; font-family: 'Outfit', sans-serif;">
-                    Executive Morning Standup Brief
-                </span>
-                <span style="font-size: 12.5px; font-weight: 800; color: {'#EF4444' if health < 80 else '#065F46'}; background: {'#FEF2F2' if health < 80 else '#ECFDF5'}; padding: 4px 12px; border-radius: 20px; border: 1px solid {'#FCA5A5' if health < 80 else '#A7F3D0'};">
-                    Network Health: {health:.0f}/100 ({brief.get('status_label')})
-                </span>
+        <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 5px solid #FF6B00; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+            <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: #EA580C; margin-bottom: 4px;">
+                <span>{act['priority']}</span>
+                <span>{act['target']}</span>
             </div>
-            <div style="font-size: 15px; color: #1E293B; line-height: 1.65;">
-                {brief.get('executive_narrative')}
+            <div style="font-size: 14px; color: #1E293B; line-height: 1.5;">
+                {act['action']}
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        # 2. Operator Performance Breakdown Table
-        st.markdown("#### 🏢 Operator Fleet & Performance Breakdown")
-        table_rows = []
-        for op_name, m in op_m.items():
-            avail = m.get("service_availability_pct", 0)
-            delay = m.get("average_delay_minutes", 0)
-            st_badge = "CRITICAL" if (avail < 85 or delay > 6) else ("REVIEW" if (avail < 92 or delay > 4) else "NOMINAL")
-            table_rows.append({
-                "Operator": op_name,
-                "Reporting Units": f"{int(m.get('active_routes_count', 0))} Corridors/Routes",
-                "Ridership": f"{int(m.get('ridership', 0)):,}",
-                "Scheduled Trips": f"{int(m.get('scheduled_services', 0)):,}",
-                "Completed Trips": f"{int(m.get('completed_services', 0)):,}",
-                "Availability Rate": f"{avail:.1f}%",
-                "Avg Route Delay": f"{delay:.1f} min",
-                "Operational Status": st_badge
-            })
-        st.dataframe(pd.DataFrame(table_rows), use_container_width=True, hide_index=True)
+    # 4. Critical & Warning Exception Details
+    st.markdown("<br/>", unsafe_allow_html=True)
+    st.markdown("#### 🔎 Exception Deep-Dive & Root Cause Hypotheses")
+    for idx, ex in enumerate(st.session_state.explained_exceptions):
+        render_exception_card_streamlit(ex, idx)
 
-        # 3. Top Actionable Intelligence Items
-        st.markdown("<br/>", unsafe_allow_html=True)
-        st.markdown("#### 🎯 Priority Operations Action Checklist")
-        for act in brief.get("top_actions", []):
-            st.markdown(f"""
-            <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 5px solid #FF6B00; border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
-                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: #EA580C; margin-bottom: 4px;">
-                    <span>{act['priority']}</span>
-                    <span>{act['target']}</span>
-                </div>
-                <div style="font-size: 14px; color: #1E293B; line-height: 1.5;">
-                    {act['action']}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
 
-        # 4. Critical & Warning Exception Details
-        st.markdown("<br/>", unsafe_allow_html=True)
-        st.markdown("#### 🔎 Exception Deep-Dive & Root Cause Hypotheses")
-        for idx, ex in enumerate(st.session_state.explained_exceptions):
-            render_exception_card_streamlit(ex, idx)
+# -----------------------------------------------------------------------------
+# PRESENTATION LAYOUT DISPATCHER
+# -----------------------------------------------------------------------------
+if view_layout == "📜 Full-Page Scroll Motion (Default)":
+    # 1. Sticky Floating Navigation Dock
+    st.markdown("""
+    <div class="floating-scroll-nav">
+        <a href="#section-hero" class="nav-jump-btn" target="_self">🏠 1. Metro Landing</a>
+        <a href="#section-overview" class="nav-jump-btn" target="_self">📊 2. Executive Overview</a>
+        <a href="#section-audit" class="nav-jump-btn" target="_self">📥 3. Data & Audit</a>
+        <a href="#section-intel" class="nav-jump-btn" target="_self">🔍 4. Operations Intel</a>
+        <a href="#section-brief" class="nav-jump-btn" target="_self">📋 5. Daily Brief</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # PAGE 1: Doodly Metro Landing Page
+    st.markdown("""
+    <div id="section-hero">
+        <div class="page-indicator-pill">PAGE 1 OF 5 • DOODLY METRO HERO & OPERATIONS PORTAL</div>
+    </div>
+    """, unsafe_allow_html=True)
+    render_section_1_hero()
+    st.markdown("""
+    <div class="scroll-prompt-bar">
+        <a href="#section-overview" target="_self">⬇️ Scroll to Page 2: Executive Overview & Multi-Modal Telemetry</a>
+    </div>
+    <div style="height: 60px;"></div>
+    """, unsafe_allow_html=True)
+
+    # PAGE 2: Executive Overview
+    st.markdown("""
+    <div id="section-overview">
+        <div class="page-indicator-pill">PAGE 2 OF 5 • EXECUTIVE OVERVIEW & FLEET TELEMETRY</div>
+    </div>
+    """, unsafe_allow_html=True)
+    render_section_2_overview()
+    st.markdown("""
+    <div class="scroll-prompt-bar">
+        <a href="#section-audit" target="_self">⬇️ Scroll to Page 3: Pre-Flight Data Quality Gate & Ingestion</a>
+    </div>
+    <div style="height: 60px;"></div>
+    """, unsafe_allow_html=True)
+
+    # PAGE 3: Data Quality Sentinel
+    st.markdown("""
+    <div id="section-audit">
+        <div class="page-indicator-pill">PAGE 3 OF 5 • DATA QUALITY SENTINEL & SCHEMA AUDIT</div>
+    </div>
+    """, unsafe_allow_html=True)
+    render_section_3_audit()
+    st.markdown("""
+    <div class="scroll-prompt-bar">
+        <a href="#section-intel" target="_self">⬇️ Scroll to Page 4: Operations Intelligence & Bottlenecks</a>
+    </div>
+    <div style="height: 60px;"></div>
+    """, unsafe_allow_html=True)
+
+    # PAGE 4: Operations Intelligence
+    st.markdown("""
+    <div id="section-intel">
+        <div class="page-indicator-pill">PAGE 4 OF 5 • OPERATIONS INTELLIGENCE & PRIORITIZED FEED</div>
+    </div>
+    """, unsafe_allow_html=True)
+    render_section_4_intel()
+    st.markdown("""
+    <div class="scroll-prompt-bar">
+        <a href="#section-brief" target="_self">⬇️ Scroll to Page 5: Two-Minute Morning Brief & PDF Export</a>
+    </div>
+    <div style="height: 60px;"></div>
+    """, unsafe_allow_html=True)
+
+    # PAGE 5: Daily Brief & PDF Export
+    st.markdown("""
+    <div id="section-brief">
+        <div class="page-indicator-pill">PAGE 5 OF 5 • TWO-MINUTE MORNING BRIEF (PS-13 STANDUP)</div>
+    </div>
+    """, unsafe_allow_html=True)
+    render_section_5_brief()
+    st.markdown("""
+    <div class="scroll-prompt-bar">
+        <a href="#section-hero" target="_self">⬆️ Back to Top (Doodly Metro Hero)</a>
+    </div>
+    <div style="height: 80px;"></div>
+    """, unsafe_allow_html=True)
+
+else:
+    # Classic Tabbed View
+    tab_landing, tab_overview, tab_import, tab_intel, tab_brief = st.tabs([
+        "🏠 Metro Landing Portal",
+        "📊 Executive Overview",
+        "📥 Data Import & Audit",
+        "🔍 Operations Intelligence",
+        "📋 Two-Minute Daily Brief"
+    ])
+
+    with tab_landing:
+        render_section_1_hero()
+
+    with tab_overview:
+        render_section_2_overview()
+
+    with tab_import:
+        render_section_3_audit()
+
+    with tab_intel:
+        render_section_4_intel()
+
+    with tab_brief:
+        render_section_5_brief()

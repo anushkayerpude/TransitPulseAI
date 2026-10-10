@@ -387,5 +387,162 @@ div.stDownloadButton > button {
     padding: 16px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.03);
 }
+
+/* ========================================================================= */
+/* SCROLL MOTION & FULL-PAGE SECTION SYSTEM                                 */
+/* ========================================================================= */
+html, body, [data-testid="stAppViewContainer"], section.main {
+    scroll-behavior: smooth !important;
+}
+
+[id^="section-"] {
+    scroll-margin-top: 85px;
+    display: block;
+    position: relative;
+}
+
+.scroll-container {
+    scroll-snap-type: y proximity;
+    overflow-y: visible;
+}
+
+.fullpage-section {
+    min-height: 92vh;
+    padding: 24px 8px 48px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    border-bottom: 2px dashed #FED7AA;
+    margin-bottom: 36px;
+}
+
+.page-indicator-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    color: #EA580C;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.06);
+}
+
+.scroll-prompt-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%);
+    border: 1.5px solid #FED7AA;
+    border-radius: 30px;
+    padding: 10px 24px;
+    margin-top: 24px;
+    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.08);
+    cursor: pointer;
+    text-decoration: none;
+    color: #0F172A;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scroll-prompt-bar:hover {
+    transform: translateY(-2px);
+    border-color: #FF6B00;
+    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.16);
+    color: #EA580C;
+}
+
+@keyframes bouncePrompt {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+.bounce-icon {
+    display: inline-block;
+    animation: bouncePrompt 1.4s ease-in-out infinite;
+}
+
+/* Floating Navigation Dock (Quick Page Jumper) */
+.floating-scroll-nav {
+    position: sticky;
+    top: 50px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    border: 1.5px solid #FED7AA;
+    border-radius: 40px;
+    padding: 7px 16px;
+    box-shadow: 0 8px 30px rgba(255, 107, 0, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 26px auto;
+    max-width: 860px;
+    flex-wrap: wrap;
+}
+
+.nav-jump-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none !important;
+    color: #475569 !important;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    transition: all 0.2s ease;
+}
+
+.nav-jump-btn:hover {
+    background: #FFF7ED !important;
+    color: #EA580C !important;
+    border-color: #FF6B00 !important;
+    transform: translateY(-1px);
+}
+
+/* Doodly Metro Landing Page Stage */
+.doodle-hero-container {
+    position: relative;
+    width: 100%;
+    min-height: 84vh;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid #FED7AA;
+    box-shadow: 0 12px 40px rgba(255, 107, 0, 0.1);
+    background: #FFFDF9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.doodle-hero-floating-card {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    max-width: 640px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(254, 215, 170, 0.9);
+    border-radius: 16px;
+    padding: 22px 26px;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
 </style>
 """
