@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 32" width="100%" height="32">
+  <defs>
+    <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0" />
+      <stop offset="20%" stop-color="#14B8A6" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="1" />
+      <stop offset="80%" stop-color="#14B8A6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="glowPulse" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes movePulse {
+      0% { transform: translateX(0px); }
+      100% { transform: translateX(900px); }
+    }
+    @keyframes glowFade {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.3; }
+    }
+    .pulse-bullet {
+      animation: movePulse 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  </style>
+
+  <!-- Track Base Line -->
+  <line x1="20" y1="16" x2="880" y2="16" stroke="#1E293B" stroke-width="2" />
+  <line x1="60" y1="16" x2="840" y2="16" stroke="url(#dividerGrad)" stroke-width="1.5" />
+
+  <!-- Fixed Transit Interchanges / Waypoints -->
+  <circle cx="180" cy="16" r="3.5" fill="#0A192F" stroke="#14B8A6" stroke-width="2" />
+  <circle cx="360" cy="16" r="3.5" fill="#0A192F" stroke="#38BDF8" stroke-width="2" />
+  <circle cx="540" cy="16" r="4.5" fill="#0A192F" stroke="#F59E0B" stroke-width="2" />
+  <circle cx="720" cy="16" r="3.5" fill="#0A192F" stroke="#14B8A6" stroke-width="2" />
+
+  <!-- Animated Glowing Metro Pulse Bullet -->
+  <g class="pulse-bullet">
+    <animateTransform 
+      attributeName="transform" 
+      type="translate" 
+      from="0, 0" 
+      to="900, 0" 
+      dur="4.5s" 
+      repeatCount="indefinite" 
+      calcMode="linear" 
+    />
+    <!-- Trail Glow -->
+    <line x1="-35" y1="16" x2="0" y2="16" stroke="#38BDF8" stroke-width="3" opacity="0.4" filter="url(#glowPulse)" />
+    <!-- Bullet Head -->
+    <circle cx="0" cy="16" r="4" fill="#FFFFFF" filter="url(#glowPulse)" />
+    <circle cx="0" cy="16" r="6" fill="#38BDF8" opacity="0.6" filter="url(#glowPulse)" />
+  </g>
+</svg>
