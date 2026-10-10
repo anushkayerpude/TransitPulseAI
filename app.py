@@ -253,10 +253,10 @@ st.markdown(f"""
             {APP_SUBTITLE} &nbsp;|&nbsp; <strong>Gandhinagar & Ahmedabad Regional Transit Joint Ops</strong>
         </p>
     </div>
-    <div style="display: flex; gap: 8px; align-items: center;">
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
         <span style="background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 11.5px; font-weight: 700; padding: 6px 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px;">
             <span style="width: 8px; height: 8px; background-color: #10B981; border-radius: 50%;"></span>
-            OPERATIONAL SENTINEL ACTIVE
+            READY-TO-USE DEMO: 14-DAY BUILT-IN DATA ACTIVE (ZERO UPLOADS NEEDED)
         </span>
     </div>
 </div>
@@ -732,59 +732,142 @@ with tab_overview:
 # TAB 3: DATA IMPORT & VALIDATION
 # =============================================================================
 with tab_import:
-    st.markdown('<div class="section-title"><span>📥 Ingest Operational Data Feeds (Pre-Flight Audit)</span></div>', unsafe_allow_html=True)
-    st.info(f"**Current Ingestion Source:** `{st.session_state.active_dataset_label}`")
-
-    # Sample CSV Downloads for Judges
-    with st.expander("💾 Download Standard Demonstration CSV Files for Manual Testing", expanded=False):
-        st.caption("Judges can download these structured CSVs and re-upload them to test validation and analysis:")
-        d_col1, d_col2, d_col3 = st.columns(3)
-        with d_col1:
-            with open("data/incident/metro_incident.csv", "rb") as f:
-                st.download_button("📥 Metro Sample CSV", f.read(), file_name="metro_sample.csv", mime="text/csv", use_container_width=True)
-        with d_col2:
-            with open("data/incident/brts_incident.csv", "rb") as f:
-                st.download_button("📥 BRTS Sample CSV", f.read(), file_name="brts_sample.csv", mime="text/csv", use_container_width=True)
-        with d_col3:
-            with open("data/incident/amts_incident.csv", "rb") as f:
-                st.download_button("📥 AMTS Sample CSV", f.read(), file_name="amts_sample.csv", mime="text/csv", use_container_width=True)
-
-    # Three Upload Slots
-    up_col1, up_col2, up_col3 = st.columns(3)
+    st.markdown('<div class="section-title"><span>📥 Operational Data Feeds & Pre-Flight Schema Audit</span></div>', unsafe_allow_html=True)
     
-    with up_col1:
-        st.markdown("#### 🚇 1. Metro Telemetry")
-        st.caption("Gujarat Metro Rail Corporation (GMRC)")
-        uploaded_metro = st.file_uploader("Upload Metro CSV", type=["csv"], key="uploader_metro")
-        if uploaded_metro is not None:
-            st.session_state.metro_file = uploaded_metro
-            st.session_state.active_dataset_label = f"Uploaded File: {uploaded_metro.name}"
+    st.markdown("""
+    <div style="background: #F0FDF4; border: 1.5px solid #10B981; border-radius: 12px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div>
+                <strong style="color: #065F46; font-size: 15.5px; font-family: 'Outfit', sans-serif;">
+                    🟢 100% Plug-and-Play Prototype: Zero Data Uploads Required!
+                </strong>
+                <p style="color: #047857; font-size: 13.5px; margin: 4px 0 0 0; line-height: 1.5;">
+                    TransitPulse AI already contains 14 days of realistic multi-modal operations telemetry (GMRC Metro, Janmarg BRTS, and AMTS City Bus) loaded in memory.
+                    You <strong>do NOT need to feed data</strong> to test or evaluate this prototype — everything is already analyzed and ready across all tabs!
+                </p>
+            </div>
+            <div>
+                <span style="background: #10B981; color: #FFFFFF; font-weight: 800; font-size: 11px; padding: 5px 14px; border-radius: 20px;">
+                    BUILT-IN DATA ACTIVE
+                </span>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    with up_col2:
-        st.markdown("#### 🚌 2. BRTS Telemetry")
-        st.caption("Janmarg Ahmedabad BRTS")
-        uploaded_brts = st.file_uploader("Upload BRTS CSV", type=["csv"], key="uploader_brts")
-        if uploaded_brts is not None:
-            st.session_state.brts_file = uploaded_brts
-            st.session_state.active_dataset_label = f"Uploaded File: {uploaded_brts.name}"
+    feed_mode = st.radio(
+        "Ingestion Source Selection:",
+        ["⚡ Use Built-in Datasets (GMRC Metro + Janmarg BRTS + AMTS) [Active]", "📁 Upload Custom CSV Feeds (Optional / Bring Your Own Data)"],
+        index=0,
+        horizontal=True
+    )
 
-    with up_col3:
-        st.markdown("#### 🚍 3. AMTS Telemetry")
-        st.caption("Ahmedabad Municipal Transport Service")
-        uploaded_amts = st.file_uploader("Upload AMTS CSV", type=["csv"], key="uploader_amts")
-        if uploaded_amts is not None:
-            st.session_state.amts_file = uploaded_amts
-            st.session_state.active_dataset_label = f"Uploaded File: {uploaded_amts.name}"
+    if "Built-in" in feed_mode:
+        st.markdown(f"**Active Ingestion Feed:** `{st.session_state.active_dataset_label}`")
+        b_c1, b_c2, b_c3 = st.columns(3)
+        with b_c1:
+            st.markdown("""
+            <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 4px solid #FF6B00; border-radius: 8px; padding: 12px 14px;">
+                <strong style="color: #FF6B00; font-size: 13.5px;">🚇 GMRC Ahmedabad Metro</strong>
+                <div style="font-size: 12px; color: #64748B; margin-top: 4px;">
+                    • Source: <code>data/incident/metro_incident.csv</code><br/>
+                    • Records: 42 rows (14 days, 3 corridors)<br/>
+                    • Telemetry: Ridership, Availability, Delay
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        with b_c2:
+            st.markdown("""
+            <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 4px solid #0D9488; border-radius: 8px; padding: 12px 14px;">
+                <strong style="color: #0D9488; font-size: 13.5px;">🚌 Janmarg Ahmedabad BRTS</strong>
+                <div style="font-size: 12px; color: #64748B; margin-top: 4px;">
+                    • Source: <code>data/incident/brts_incident.csv</code><br/>
+                    • Records: 84 rows (14 days, 6 routes)<br/>
+                    • Telemetry: Ridership, Availability, Delay
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+        with b_c3:
+            st.markdown("""
+            <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-left: 4px solid #D97706; border-radius: 8px; padding: 12px 14px;">
+                <strong style="color: #D97706; font-size: 13.5px;">🚍 AMTS Municipal City Bus</strong>
+                <div style="font-size: 12px; color: #64748B; margin-top: 4px;">
+                    • Source: <code>data/incident/amts_incident.csv</code><br/>
+                    • Records: 56 rows (14 days, 4 depots)<br/>
+                    • Telemetry: Fleet Turnout, Trips, Delivery
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
-    # Action Button
-    st.markdown("<br/>", unsafe_allow_html=True)
-    if st.button("🚀 Validate & Consolidate Operational Feeds", type="primary", use_container_width=True):
-        with st.spinner("Executing multi-schema validation and statistical baseline comparison..."):
-            success = run_pipeline()
-            if success:
-                st.success("✅ Feeds successfully validated and consolidated into operations warehouse!")
-            else:
-                st.error("❌ Validation failed on one or more files. See detailed audit below.")
+        st.markdown("<br/>", unsafe_allow_html=True)
+        q_c1, q_c2, q_c3 = st.columns(3)
+        with q_c1:
+            if st.button("🚨 Load 14-Day Incident Scenario", use_container_width=True, type="primary", key="tab_import_inc_btn"):
+                load_sample_dataset("incident")
+                st.rerun()
+        with q_c2:
+            if st.button("🟢 Load 14-Day Nominal Baseline", use_container_width=True, key="tab_import_base_btn"):
+                load_sample_dataset("baseline")
+                st.rerun()
+        with q_c3:
+            if st.button("🧪 Test Corrupted CSV Quality Gate", use_container_width=True, key="tab_import_corrupt_btn"):
+                st.session_state.metro_file = "data/invalid_test/corrupted_metro_sample.csv"
+                st.session_state.brts_file = "data/baseline/brts_baseline.csv"
+                st.session_state.amts_file = "data/baseline/amts_baseline.csv"
+                st.session_state.active_dataset_label = "Corrupted Validation Test Dataset"
+                run_pipeline()
+                st.rerun()
+    else:
+        # Sample CSV Downloads for Judges
+        with st.expander("💾 Download Standard Demonstration CSV Files for Manual Testing", expanded=False):
+            st.caption("Judges can download these structured CSVs and re-upload them to test validation and analysis:")
+            d_col1, d_col2, d_col3 = st.columns(3)
+            with d_col1:
+                with open("data/incident/metro_incident.csv", "rb") as f:
+                    st.download_button("📥 Metro Sample CSV", f.read(), file_name="metro_sample.csv", mime="text/csv", use_container_width=True)
+            with d_col2:
+                with open("data/incident/brts_incident.csv", "rb") as f:
+                    st.download_button("📥 BRTS Sample CSV", f.read(), file_name="brts_sample.csv", mime="text/csv", use_container_width=True)
+            with d_col3:
+                with open("data/incident/amts_incident.csv", "rb") as f:
+                    st.download_button("📥 AMTS Sample CSV", f.read(), file_name="amts_sample.csv", mime="text/csv", use_container_width=True)
+
+        # Three Upload Slots
+        up_col1, up_col2, up_col3 = st.columns(3)
+        
+        with up_col1:
+            st.markdown("#### 🚇 1. Metro Telemetry")
+            st.caption("Gujarat Metro Rail Corporation (GMRC)")
+            uploaded_metro = st.file_uploader("Upload Metro CSV", type=["csv"], key="uploader_metro")
+            if uploaded_metro is not None:
+                st.session_state.metro_file = uploaded_metro
+                st.session_state.active_dataset_label = f"Uploaded File: {uploaded_metro.name}"
+
+        with up_col2:
+            st.markdown("#### 🚌 2. BRTS Telemetry")
+            st.caption("Janmarg Ahmedabad BRTS")
+            uploaded_brts = st.file_uploader("Upload BRTS CSV", type=["csv"], key="uploader_brts")
+            if uploaded_brts is not None:
+                st.session_state.brts_file = uploaded_brts
+                st.session_state.active_dataset_label = f"Uploaded File: {uploaded_brts.name}"
+
+        with up_col3:
+            st.markdown("#### 🚍 3. AMTS Telemetry")
+            st.caption("Ahmedabad Municipal Transport Service")
+            uploaded_amts = st.file_uploader("Upload AMTS CSV", type=["csv"], key="uploader_amts")
+            if uploaded_amts is not None:
+                st.session_state.amts_file = uploaded_amts
+                st.session_state.active_dataset_label = f"Uploaded File: {uploaded_amts.name}"
+
+        # Action Button
+        st.markdown("<br/>", unsafe_allow_html=True)
+        if st.button("🚀 Validate & Consolidate Custom Feeds", type="primary", use_container_width=True):
+            with st.spinner("Executing multi-schema validation and statistical baseline comparison..."):
+                success = run_pipeline()
+                if success:
+                    st.success("✅ Feeds successfully validated and consolidated into operations warehouse!")
+                else:
+                    st.error("❌ Validation failed on one or more files. See detailed audit below.")
 
     # Validation Audit Results Display
     st.markdown('<div class="section-title"><span>🛡️ Multi-File Schema & Integrity Audit</span></div>', unsafe_allow_html=True)
