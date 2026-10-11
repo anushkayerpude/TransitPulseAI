@@ -249,25 +249,26 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
     <!-- Legend Panel -->
     <div class="legend-panel">
         <div class="legend-item">
-            <span class="legend-color" style="background: #FF6B00;"></span>
-            <span>East-West (Line 1)</span>
+            <span class="legend-color" style="background: #0066CC; height: 6px;"></span>
+            <span>Blue Line (East-West)</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background: #0D9488;"></span>
-            <span>North-South (Line 2)</span>
+            <span class="legend-color" style="background: #DC2626; height: 6px;"></span>
+            <span>Red Line (North-South & Gandhinagar)</span>
         </div>
         <div class="legend-item">
-            <span class="legend-color" style="background: #8B5CF6;"></span>
-            <span>GN Branch (GIFT City)</span>
+            <span class="legend-color" style="background: #8B5CF6; height: 6px;"></span>
+            <span>Violet Line (GIFT City Spur)</span>
         </div>
         <div class="legend-item">
-            <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#FF6B00; border:2px solid #FFF7ED;"></span>
+            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#FFF7ED; border:2.5px solid #0066CC;"></span>
             <span>🔄 Interchange</span>
         </div>
         <div class="legend-item">
-            <span style="color:#EA580C;">⚠️ TSR 25 km/h</span>
+            <span style="color:#EA580C; font-weight:700;">⚠️ TSR 25 km/h</span>
         </div>
     </div>
+
 
     <script>
         const corridorData = {corridors_json};
@@ -320,14 +321,24 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
             if (linePoints.length > 0) {{
                 allCoordinates = allCoordinates.concat(linePoints);
 
-                // Draw Base Route Polyline
-                const polyline = L.polyline(linePoints, {{
+                // 1. Outer viaduct route casing / glow for bold visibility (Thick)
+                L.polyline(linePoints, {{
                     color: color,
-                    weight: isSelected ? 6 : 4,
-                    opacity: isSelected ? 0.85 : 0.45,
+                    weight: isSelected ? 16 : 12,
+                    opacity: isSelected ? 0.38 : 0.22,
                     lineCap: 'round',
                     lineJoin: 'round'
                 }}).addTo(map);
+
+                // 2. Core Vibrant Metro Tube Line (Thick)
+                const polyline = L.polyline(linePoints, {{
+                    color: color,
+                    weight: isSelected ? 9 : 7,
+                    opacity: 1.0,
+                    lineCap: 'round',
+                    lineJoin: 'round'
+                }}).addTo(map);
+
 
                 // Highlight Block Segments with live status (TSR or Fault)
                 blocks.forEach((blk, idx) => {{
@@ -336,12 +347,13 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
                         const p2 = stations[idx + 1].coords;
                         if (p1 && p2) {{
                             if (blk.status === "SPEED_RESTRICTION") {{
-                                // Glowing Amber TSR segment
+                                // Glowing Amber TSR segment (Thick)
                                 L.polyline([p1, p2], {{
                                     color: "#EA580C",
-                                    weight: 8,
-                                    opacity: 0.95,
-                                    dashArray: "8, 8"
+                                    weight: 12,
+                                    opacity: 1.0,
+                                    dashArray: "10, 8",
+                                    lineCap: 'round'
                                 }}).addTo(map).bindPopup(`
                                     <div class="popup-title">⚠️ TSR Active: ${{blk.block_id}}</div>
                                     <span class="popup-badge" style="background:#FFF7ED; color:#EA580C; border:1px solid #FDBA74;">TEMPORARY SPEED RESTRICTION</span>
@@ -350,12 +362,13 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
                                     <div><strong>Reason:</strong> ${{blk.notes}}</div>
                                 `);
                             }} else if (blk.status === "POWER_FAULT") {{
-                                // Red Fault segment
+                                // Red Fault segment (Thick)
                                 L.polyline([p1, p2], {{
                                     color: "#EF4444",
-                                    weight: 8,
-                                    opacity: 0.95,
-                                    dashArray: "6, 6"
+                                    weight: 12,
+                                    opacity: 1.0,
+                                    dashArray: "8, 6",
+                                    lineCap: 'round'
                                 }}).addTo(map).bindPopup(`
                                     <div class="popup-title">⚡ Third-Rail Power Trip</div>
                                     <span class="popup-badge" style="background:#FEF2F2; color:#DC2626; border:1px solid #FCA5A5;">0V DC DE-ENERGIZED</span>
@@ -405,26 +418,38 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
 
                     const isInterchange = (stn.type === "interchange");
                     const isDepot = (stn.type === "depot");
-                    const isHub = (stn.type === "railway_hub" || stn.type === "stadium");
+                    const isHub = (stn.type === "railway_hub" || stn.type === "stadium" || stn.type === "hub" || stn.type === "terminal");
                     
                     let pinClass = "station-pin";
-                    let pinSize = 14;
+                    let pinSize = 13;
                     if (isInterchange) {{
                         pinClass += " pin-interchange";
-                        pinSize = 20;
+                        pinSize = 22;
                     }} else if (isDepot) {{
                         pinClass += " pin-depot";
-                        pinSize = 16;
+                        pinSize = 18;
                     }} else if (isHub) {{
                         pinClass += " pin-hub";
                         pinSize = 16;
                     }}
 
+                    let iconEmoji = '';
+                    if (isInterchange) {{
+                        iconEmoji = (stn.name === "GNLU") ? '<span style="font-size:11px;">🔀</span>' : '<span style="font-size:11px;">🔄</span>';
+                    }} else if (isDepot) {{
+                        iconEmoji = '<span style="font-size:10px;">🏢</span>';
+                    }} else if (stn.badge && (stn.badge.includes('IR') || stn.badge.includes('HSR'))) {{
+                        iconEmoji = '<span style="font-size:9px;">🚆</span>';
+                    }} else if (stn.badge && stn.badge.includes('Stadium')) {{
+                        iconEmoji = '<span style="font-size:9px;">🏟️</span>';
+                    }}
+
                     const markerHtml = `
                         <div class="${{pinClass}}" style="width:${{pinSize}}px; height:${{pinSize}}px; border-color:${{color}};">
-                            ${{isInterchange ? '<span style="font-size:10px;">🔄</span>' : (isDepot ? '<span style="font-size:9px;">🏢</span>' : '')}}
+                            ${{iconEmoji}}
                         </div>
                     `;
+
 
                     const stationIcon = L.divIcon({{
                         className: 'custom-station-pin',

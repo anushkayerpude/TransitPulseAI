@@ -92,9 +92,10 @@ class GMRCTrackMonitor:
         # Baseline train positions
         active_train_indices = {
             "East-West Line": [2, 6, 10, 14],  # Train present on these blocks
-            "North-South Line": [1, 5, 9, 12],
+            "North-South Line": [2, 6, 11, 15, 22, 28],
             "GN Branch": [1]
         }.get(corridor_key, [1])
+
 
         for i in range(num_stations - 1):
             block_num = i + 1

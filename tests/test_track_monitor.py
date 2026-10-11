@@ -26,11 +26,22 @@ class TestGMRCTrackMonitor(unittest.TestCase):
         ew = GMRC_CORRIDORS["East-West Line"]
         self.assertEqual(ew["code"], "EW")
         self.assertEqual(len(ew["stations"]), 18)
+        self.assertEqual(ew["color"], "#0066CC")  # Official Blue Line
         
         # Check Old High Court is interchange
         ohc = [s for s in ew["stations"] if s["name"] == "Old High Court"]
         self.assertEqual(len(ohc), 1)
         self.assertEqual(ohc[0]["type"], "interchange")
+
+        # Check North-South Red Line has AEC and Mahatma Mandir
+        ns = GMRC_CORRIDORS["North-South Line"]
+        self.assertEqual(ns["color"], "#DC2626")  # Official Red Line
+        ns_names = [s["name"] for s in ns["stations"]]
+        self.assertIn("AEC", ns_names)
+        self.assertIn("Motera Stadium", ns_names)
+        self.assertIn("Mahatma Mandir", ns_names)
+        self.assertIn("GNLU", ns_names)
+
 
     def test_02_nominal_telemetry(self):
         """Verify nominal scenario has clean 750V DC and no active TSRs."""

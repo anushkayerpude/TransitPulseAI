@@ -150,9 +150,9 @@ GMRC_TRACK_STATUSES = {
 GMRC_CORRIDORS = {
     "East-West Line": {
         "code": "EW",
-        "name": "East-West Line (Line 1)",
+        "name": "Blue Line (East-West Line)",
         "route_label": "Thaltej Gam ⇄ Vastral Gam",
-        "color": "#FF6B00",
+        "color": "#0066CC",  # Official GMRC Blue Line
         "length_km": 21.16,
         "stations": [
             {"id": "EW-01", "name": "Thaltej Gam", "type": "terminal", "coords": [23.0543, 72.5028]},
@@ -161,8 +161,8 @@ GMRC_CORRIDORS = {
             {"id": "EW-04", "name": "Gurukul Road", "type": "station", "coords": [23.0465, 72.5350]},
             {"id": "EW-05", "name": "Gujarat University", "type": "station", "coords": [23.0385, 72.5450]},
             {"id": "EW-06", "name": "Commerce Six Road", "type": "station", "coords": [23.0360, 72.5540]},
-            {"id": "EW-07", "name": "Stadium", "type": "station", "coords": [23.0390, 72.5630]},
-            {"id": "EW-08", "name": "Old High Court", "type": "interchange", "badge": "Line 2 Interchange", "coords": [23.0375, 72.5715]},
+            {"id": "EW-07", "name": "SP Stadium", "type": "station", "coords": [23.0390, 72.5630]},
+            {"id": "EW-08", "name": "Old High Court", "type": "interchange", "badge": "Red Line Interchange", "coords": [23.0375, 72.5715]},
             {"id": "EW-09", "name": "Shahpur", "type": "station", "coords": [23.0370, 72.5800]},
             {"id": "EW-10", "name": "Gheekanta", "type": "station", "coords": [23.0315, 72.5890]},
             {"id": "EW-11", "name": "Kalupur Railway Station", "type": "railway_hub", "badge": "IR Junction", "coords": [23.0265, 72.6000]},
@@ -177,40 +177,61 @@ GMRC_CORRIDORS = {
     },
     "North-South Line": {
         "code": "NS",
-        "name": "North-South Line (Line 2)",
-        "route_label": "Motera Stadium ⇄ APMC",
-        "color": "#0D9488",
-        "length_km": 18.87,
+        "name": "Red Line (North-South & Gandhinagar)",
+        "route_label": "APMC ⇄ Motera Stadium ⇄ Mahatma Mandir",
+        "color": "#DC2626",  # Official GMRC Red Line
+        "length_km": 47.07,
         "stations": [
-            {"id": "NS-01", "name": "Motera Stadium", "type": "stadium", "badge": "Cricket Stadium", "coords": [23.0915, 72.5975]},
-            {"id": "NS-02", "name": "Sabarmati", "type": "station", "coords": [23.0805, 72.5930]},
-            {"id": "NS-03", "name": "Sabarmati Railway Station", "type": "railway_hub", "badge": "IR / HSR", "coords": [23.0710, 72.5890]},
-            {"id": "NS-04", "name": "Ranip", "type": "station", "coords": [23.0610, 72.5830]},
-            {"id": "NS-05", "name": "Vadaj", "type": "station", "coords": [23.0520, 72.5770]},
-            {"id": "NS-06", "name": "Vijay Nagar", "type": "station", "coords": [23.0450, 72.5740]},
-            {"id": "NS-07", "name": "Usmanpura", "type": "station", "coords": [23.0400, 72.5725]},
-            {"id": "NS-08", "name": "Old High Court", "type": "interchange", "badge": "Line 1 Interchange", "coords": [23.0375, 72.5715]},
-            {"id": "NS-09", "name": "Gandhigram", "type": "station", "coords": [23.0270, 72.5710]},
-            {"id": "NS-10", "name": "Paldi", "type": "station", "coords": [23.0135, 72.5670]},
-            {"id": "NS-11", "name": "Shreyas", "type": "station", "coords": [23.0040, 72.5630]},
-            {"id": "NS-12", "name": "Rajiv Nagar", "type": "station", "coords": [22.9950, 72.5560]},
-            {"id": "NS-13", "name": "Jivraj Park", "type": "station", "coords": [22.9860, 72.5480]},
-            {"id": "NS-14", "name": "APMC", "type": "terminal", "badge": "Gyaspur Depot", "coords": [22.9770, 72.5410]}
+            {"id": "NS-01", "name": "APMC", "type": "terminal", "badge": "Gyaspur Depot", "coords": [22.9770, 72.5410]},
+            {"id": "NS-02", "name": "Jivraj Park", "type": "station", "coords": [22.9860, 72.5480]},
+            {"id": "NS-03", "name": "Rajiv Nagar", "type": "station", "coords": [22.9950, 72.5560]},
+            {"id": "NS-04", "name": "Shreyas", "type": "station", "coords": [23.0040, 72.5630]},
+            {"id": "NS-05", "name": "Paldi", "type": "station", "coords": [23.0135, 72.5670]},
+            {"id": "NS-06", "name": "Gandhigram", "type": "station", "coords": [23.0270, 72.5710]},
+            {"id": "NS-07", "name": "Old High Court", "type": "interchange", "badge": "Blue Line Interchange", "coords": [23.0375, 72.5715]},
+            {"id": "NS-08", "name": "Usmanpura", "type": "station", "coords": [23.0400, 72.5725]},
+            {"id": "NS-09", "name": "Vijay Nagar", "type": "station", "coords": [23.0450, 72.5740]},
+            {"id": "NS-10", "name": "Vadaj", "type": "station", "coords": [23.0520, 72.5770]},
+            {"id": "NS-11", "name": "Ranip", "type": "station", "coords": [23.0610, 72.5830]},
+            {"id": "NS-12", "name": "Sabarmati Railway Station", "type": "railway_hub", "badge": "IR / HSR", "coords": [23.0710, 72.5890]},
+            {"id": "NS-13", "name": "Sabarmati", "type": "station", "coords": [23.0805, 72.5930]},
+            {"id": "NS-14", "name": "AEC", "type": "station", "badge": "Torrent Power", "coords": [23.0860, 72.5955]},
+            {"id": "NS-15", "name": "Motera Stadium", "type": "stadium", "badge": "Cricket Stadium", "coords": [23.0915, 72.5975]},
+            {"id": "NS-16", "name": "Koteshwar Road", "type": "station", "coords": [23.1040, 72.6030]},
+            {"id": "NS-17", "name": "Vishwakarma College", "type": "station", "coords": [23.1140, 72.6090]},
+            {"id": "NS-18", "name": "Tapovan Circle", "type": "station", "coords": [23.1250, 72.6160]},
+            {"id": "NS-19", "name": "Narmada Canal", "type": "station", "coords": [23.1360, 72.6240]},
+            {"id": "NS-20", "name": "Koba Circle", "type": "station", "coords": [23.1480, 72.6350]},
+            {"id": "NS-21", "name": "Juna Koba", "type": "station", "coords": [23.1530, 72.6390]},
+            {"id": "NS-22", "name": "Koba Gam", "type": "station", "coords": [23.1570, 72.6430]},
+            {"id": "NS-23", "name": "GNLU", "type": "interchange", "badge": "GIFT City Jct", "coords": [23.1610, 72.6470]},
+            {"id": "NS-24", "name": "Raysan", "type": "station", "coords": [23.1700, 72.6510]},
+            {"id": "NS-25", "name": "Randesan", "type": "station", "coords": [23.1790, 72.6540]},
+            {"id": "NS-26", "name": "Dholakuva Circle", "type": "station", "coords": [23.1880, 72.6450]},
+            {"id": "NS-27", "name": "Infocity", "type": "hub", "badge": "IT Hub", "coords": [23.1930, 72.6350]},
+            {"id": "NS-28", "name": "Sector-1", "type": "station", "coords": [23.2030, 72.6410]},
+            {"id": "NS-29", "name": "Sector-10A", "type": "station", "coords": [23.2120, 72.6470]},
+            {"id": "NS-30", "name": "Sachivalaya", "type": "hub", "badge": "Secretariat", "coords": [23.2200, 72.6530]},
+            {"id": "NS-31", "name": "Akshardham", "type": "hub", "badge": "Temple", "coords": [23.2270, 72.6580]},
+            {"id": "NS-32", "name": "Juna Sachivalaya", "type": "station", "coords": [23.2330, 72.6590]},
+            {"id": "NS-33", "name": "Sector-16", "type": "station", "coords": [23.2380, 72.6530]},
+            {"id": "NS-34", "name": "Sector-24", "type": "station", "coords": [23.2470, 72.6470]},
+            {"id": "NS-35", "name": "Mahatma Mandir", "type": "terminal", "badge": "Convention Center", "coords": [23.2540, 72.6410]}
         ]
     },
     "GN Branch": {
         "code": "GN",
-        "name": "GN Branch (Phase 2 Link)",
-        "route_label": "Koba Circle ⇄ GIFT City",
-        "color": "#8B5CF6",
-        "length_km": 10.5,
+        "name": "Violet Line (GIFT City Spur)",
+        "route_label": "GNLU ⇄ GIFT City",
+        "color": "#8B5CF6",  # Official GMRC Violet Line
+        "length_km": 5.4,
         "stations": [
-            {"id": "GN-01", "name": "Koba Circle", "type": "junction", "badge": "Phase 2 Jct", "coords": [23.1480, 72.6350]},
-            {"id": "GN-02", "name": "GNLU", "type": "station", "coords": [23.1610, 72.6470]},
-            {"id": "GN-03", "name": "PDPU", "type": "station", "coords": [23.1680, 72.6650]},
-            {"id": "GN-04", "name": "GIFT City", "type": "terminal", "badge": "Fintech Hub", "coords": [23.1590, 72.6840]}
+            {"id": "GN-01", "name": "GNLU", "type": "interchange", "badge": "Red Line Jct", "coords": [23.1610, 72.6470]},
+            {"id": "GN-02", "name": "PDPU", "type": "station", "badge": "University", "coords": [23.1680, 72.6650]},
+            {"id": "GN-03", "name": "GIFT City", "type": "terminal", "badge": "Fintech Hub", "coords": [23.1590, 72.6840]}
         ]
     }
 }
+
 
 
