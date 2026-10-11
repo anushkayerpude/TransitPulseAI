@@ -21,6 +21,7 @@ from engine.consolidator import consolidate_datasets
 from engine.detector import DetectionEngine
 from engine.explainer import AIExplainerEngine
 from engine.pdf_generator import generate_pdf_brief, generate_html_brief
+from engine.track_monitor import GMRCTrackMonitor
 
 app = FastAPI(
     title=f"{APP_NAME} Backend API",
@@ -178,6 +179,53 @@ def download_brief_pdf(
         headers={"Content-Disposition": f"attachment; filename=TransitPulse_Daily_Brief_{res.get('report_date')}.pdf"}
     )
 
+# -----------------------------------------------------------------------------
+# GMRC METRO TRACK & WAYSIDE TELEMETRY REST ENDPOINTS
+# -----------------------------------------------------------------------------
+
+@app.get("/api/gmrc/track/corridors")
+def get_gmrc_corridors():
+    """
+    Returns list of GMRC Metro corridors, route lengths, and stations.
+    """
+    from config import GMRC_CORRIDORS
+    return {
+        "status": "SUCCESS",
+        "operator": "Gujarat Metro Rail Corporation (GMRC)",
+        "corridors": GMRC_CORRIDORS
+    }
+
+@app.get("/api/gmrc/track/status")
+def get_gmrc_track_status(
+    corridor_key: str = Query("East-West Line", description="Corridor name (East-West Line, North-South Line, GN Branch)"),
+    scenario: str = Query("nominal", enum=["nominal", "incident", "power_trip", "switch_fault"])
+):
+    """
+    Returns granular track circuit occupancy, CBTC signaling health,
+    third-rail traction voltage, and temporary speed restrictions for a corridor.
+    """
+    telemetry = GMRCTrackMonitor.get_corridor_telemetry(corridor_key=corridor_key, scenario=scenario)
+    return {
+        "status": "SUCCESS",
+        "corridor": corridor_key,
+        "scenario": scenario,
+        "telemetry": telemetry
+    }
+
+@app.get("/api/gmrc/track/overview")
+def get_gmrc_network_overview(
+    scenario: str = Query("nominal", enum=["nominal", "incident", "power_trip", "switch_fault"])
+):
+    """
+    Returns high-level wayside track health overview across all GMRC corridors.
+    """
+    overview = GMRCTrackMonitor.get_network_overview(scenario=scenario)
+    return {
+        "status": "SUCCESS",
+        "network_overview": overview
+    }
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+

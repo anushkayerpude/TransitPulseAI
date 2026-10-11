@@ -281,8 +281,12 @@ python -m uvicorn api:app --host 0.0.0.0 --port 8000 --reload
 | `GET` | `/api/health` | Health check & supported operators |
 | `GET` | `/api/demo/run?dataset_type=incident` | Executes the complete 14-day multi-modal analytics pipeline and returns full JSON brief |
 | `GET` | `/api/demo/pdf?dataset_type=incident` | Compiles and streams the binary 1-Page PDF Brief directly as an HTTP download |
+| `GET` | `/api/gmrc/track/corridors` | Returns full GMRC corridor metadata, lengths, and station topologies |
+| `GET` | `/api/gmrc/track/status` | Returns granular wayside block occupancies, CBTC signaling health, 750V DC voltage, and TSRs |
+| `GET` | `/api/gmrc/track/overview` | High-level wayside health overview across East-West, North-South, and GN Branch lines |
 | `POST` | `/api/validate` | Validates an uploaded transit CSV against schema and quality gates |
 | `GET` | `/docs` | Interactive Swagger API documentation UI |
+
 
 ---
 

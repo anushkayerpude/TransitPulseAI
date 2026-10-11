@@ -11,6 +11,7 @@ operational briefings. Follows strict governance rules:
 import os
 from typing import List, Dict, Any, Optional
 from engine.detector import TransitException
+from engine.track_monitor import GMRCTrackMonitor
 
 class ExplainedException:
     def __init__(
@@ -146,11 +147,16 @@ class AIExplainerEngine:
                 evidence_points.append(f"Delay inflation of +{corr['delay_inflation_minutes']:.1f} minutes above tolerance.")
             
             if op == "Metro":
+                try:
+                    track_facts = GMRCTrackMonitor.get_track_evidence_for_explainer(corridor_key="East-West Line", scenario="incident")
+                    evidence_points.extend(track_facts)
+                except Exception:
+                    pass
                 possible_explanations = [
-                    "Hypothesis A: Speed restriction imposed due to track circuit or signaling communication jitter.",
-                    "Hypothesis B: Prolonged station dwell time caused by door obstruction or medical emergency."
+                    "Hypothesis A: Wayside CBTC balise packet loss forced 25 km/h TSR on East-West Line (Kalupur section).",
+                    "Hypothesis B: Third-rail traction voltage dip at Kalupur Substation caused temporary headway spacing."
                 ]
-                recommended_action = "Review ATS line headway report and verify if speed restrictions remain in place."
+                recommended_action = "Contact Apparel Park OCC to confirm if 25 km/h TSR on block EW-BLK-10 is lifted and CBTC restored."
             elif op == "BRTS":
                 possible_explanations = [
                     "Hypothesis A: Mixed traffic lane encroachment at key corridor intersections.",

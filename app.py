@@ -41,6 +41,7 @@ from components.charts import (
     create_corridor_breakdown_chart
 )
 from components.ui_cards import render_kpi_metric, render_exception_card_streamlit
+from components.track_diagram import render_gmrc_track_monitor
 from engine.validator import validate_csv, ValidationResult
 from engine.consolidator import consolidate_datasets, ConsolidatedData
 from engine.detector import DetectionEngine, TransitException
@@ -507,13 +508,10 @@ def render_section_1_hero():
             load_sample_dataset("incident")
             st.rerun()
 
-    # 5. Live Animated Track Status Monitor
-    st.markdown('<div class="section-title"><span>🚊 Real-Time Metro Track & Signal Telemetry Simulation</span></div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 12px; padding: 14px; box-shadow: 0 4px 16px rgba(255, 107, 0, 0.05); margin-bottom: 24px;">
-        <img src="assets/metro_transit_animation.svg" style="width: 100%; border-radius: 8px; display: block;" alt="GMRC Metro Track Status" />
-    </div>
-    """, unsafe_allow_html=True)
+    # 5. Live GMRC Wayside Track & Telemetry Monitor
+    st.markdown('<div class="section-title"><span>🚊 Real-Time GMRC Metro Track & Wayside Signal Telemetry</span></div>', unsafe_allow_html=True)
+    render_gmrc_track_monitor(key_prefix="landing_track")
+
 
     # 6. Regional Transit Network Status Grid
     st.markdown('<div class="section-title"><span>🏙️ Gandhinagar & Ahmedabad Regional Transit Network Coverage</span></div>', unsafe_allow_html=True)
@@ -985,8 +983,14 @@ def render_section_4_intel():
         for idx, ex in enumerate(filtered_exceptions):
             render_exception_card_streamlit(ex, idx)
 
-    # Row 3: Inspect Raw Telemetry Warehouse
+    # Row 3: GMRC Wayside Track & Interlocking Diagnostics
+    st.markdown('<div class="section-title"><span>🚊 GMRC Wayside Track & Interlocking Diagnostic Telemetry</span></div>', unsafe_allow_html=True)
+    st.caption("Drill down into real-time wayside block occupancy, Temporary Speed Restrictions (TSR), and CBTC signaling health:")
+    render_gmrc_track_monitor(key_prefix="intel_track")
+
+    # Row 4: Inspect Raw Telemetry Warehouse
     with st.expander("📋 Inspect Consolidated Multi-Modal Telemetry Warehouse", expanded=False):
+
         st.caption("Consolidated tabular data with date filtering and CSV export:")
         st.dataframe(
             consolidated.raw_df,
