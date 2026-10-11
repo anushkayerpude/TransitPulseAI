@@ -281,12 +281,24 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
             attributionControl: true
         }}).setView([23.0375, 72.5715], 12);
 
-        // Add CartoDB Positron clean light tiles
-        L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
+        // Add CartoDB Positron clean light tiles with automatic OSM fallback
+        const baseLayer = L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: 'abcd',
             maxZoom: 19
-        }}).addTo(map);
+        }});
+        let fallbackTriggered = false;
+        baseLayer.on('tileerror', function() {{
+            if (!fallbackTriggered) {{
+                fallbackTriggered = true;
+                L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    maxZoom: 19
+                }}).addTo(map);
+            }}
+        }});
+        baseLayer.addTo(map);
+
 
         // Store all polyline bounds to fit view
         let allCoordinates = [];
