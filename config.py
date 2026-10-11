@@ -155,24 +155,24 @@ GMRC_CORRIDORS = {
         "color": "#FF6B00",
         "length_km": 21.16,
         "stations": [
-            {"id": "EW-01", "name": "Thaltej Gam", "type": "terminal"},
-            {"id": "EW-02", "name": "Thaltej", "type": "station"},
-            {"id": "EW-03", "name": "Doordarshan Kendra", "type": "station"},
-            {"id": "EW-04", "name": "Gurukul Road", "type": "station"},
-            {"id": "EW-05", "name": "Gujarat University", "type": "station"},
-            {"id": "EW-06", "name": "Commerce Six Road", "type": "station"},
-            {"id": "EW-07", "name": "Stadium", "type": "station"},
-            {"id": "EW-08", "name": "Old High Court", "type": "interchange", "badge": "Line 2 Interchange"},
-            {"id": "EW-09", "name": "Shahpur", "type": "station"},
-            {"id": "EW-10", "name": "Gheekanta", "type": "station"},
-            {"id": "EW-11", "name": "Kalupur Railway Station", "type": "railway_hub", "badge": "IR Junction"},
-            {"id": "EW-12", "name": "Kankaria East", "type": "station"},
-            {"id": "EW-13", "name": "Apparel Park", "type": "depot", "badge": "OCC & Depot"},
-            {"id": "EW-14", "name": "Amraiwadi", "type": "station"},
-            {"id": "EW-15", "name": "Rabari Colony", "type": "station"},
-            {"id": "EW-16", "name": "Vastral", "type": "station"},
-            {"id": "EW-17", "name": "Nirant Cross Road", "type": "station"},
-            {"id": "EW-18", "name": "Vastral Gam", "type": "terminal"}
+            {"id": "EW-01", "name": "Thaltej Gam", "type": "terminal", "coords": [23.0543, 72.5028]},
+            {"id": "EW-02", "name": "Thaltej", "type": "station", "coords": [23.0505, 72.5160]},
+            {"id": "EW-03", "name": "Doordarshan Kendra", "type": "station", "coords": [23.0485, 72.5270]},
+            {"id": "EW-04", "name": "Gurukul Road", "type": "station", "coords": [23.0465, 72.5350]},
+            {"id": "EW-05", "name": "Gujarat University", "type": "station", "coords": [23.0385, 72.5450]},
+            {"id": "EW-06", "name": "Commerce Six Road", "type": "station", "coords": [23.0360, 72.5540]},
+            {"id": "EW-07", "name": "Stadium", "type": "station", "coords": [23.0390, 72.5630]},
+            {"id": "EW-08", "name": "Old High Court", "type": "interchange", "badge": "Line 2 Interchange", "coords": [23.0375, 72.5715]},
+            {"id": "EW-09", "name": "Shahpur", "type": "station", "coords": [23.0370, 72.5800]},
+            {"id": "EW-10", "name": "Gheekanta", "type": "station", "coords": [23.0315, 72.5890]},
+            {"id": "EW-11", "name": "Kalupur Railway Station", "type": "railway_hub", "badge": "IR Junction", "coords": [23.0265, 72.6000]},
+            {"id": "EW-12", "name": "Kankaria East", "type": "station", "coords": [23.0120, 72.6060]},
+            {"id": "EW-13", "name": "Apparel Park", "type": "depot", "badge": "OCC & Depot", "coords": [23.0070, 72.6200]},
+            {"id": "EW-14", "name": "Amraiwadi", "type": "station", "coords": [23.0035, 72.6320]},
+            {"id": "EW-15", "name": "Rabari Colony", "type": "station", "coords": [23.0010, 72.6450]},
+            {"id": "EW-16", "name": "Vastral", "type": "station", "coords": [22.9990, 72.6570]},
+            {"id": "EW-17", "name": "Nirant Cross Road", "type": "station", "coords": [22.9975, 72.6680]},
+            {"id": "EW-18", "name": "Vastral Gam", "type": "terminal", "coords": [22.9960, 72.6780]}
         ]
     },
     "North-South Line": {
@@ -182,20 +182,20 @@ GMRC_CORRIDORS = {
         "color": "#0D9488",
         "length_km": 18.87,
         "stations": [
-            {"id": "NS-01", "name": "Motera Stadium", "type": "stadium", "badge": "Cricket Stadium"},
-            {"id": "NS-02", "name": "Sabarmati", "type": "station"},
-            {"id": "NS-03", "name": "Sabarmati Railway Station", "type": "railway_hub", "badge": "IR / HSR"},
-            {"id": "NS-04", "name": "Ranip", "type": "station"},
-            {"id": "NS-05", "name": "Vadaj", "type": "station"},
-            {"id": "NS-06", "name": "Vijay Nagar", "type": "station"},
-            {"id": "NS-07", "name": "Usmanpura", "type": "station"},
-            {"id": "NS-08", "name": "Old High Court", "type": "interchange", "badge": "Line 1 Interchange"},
-            {"id": "NS-09", "name": "Gandhigram", "type": "station"},
-            {"id": "NS-10", "name": "Paldi", "type": "station"},
-            {"id": "NS-11", "name": "Shreyas", "type": "station"},
-            {"id": "NS-12", "name": "Rajiv Nagar", "type": "station"},
-            {"id": "NS-13", "name": "Jivraj Park", "type": "station"},
-            {"id": "NS-14", "name": "APMC", "type": "terminal", "badge": "Gyaspur Depot"}
+            {"id": "NS-01", "name": "Motera Stadium", "type": "stadium", "badge": "Cricket Stadium", "coords": [23.0915, 72.5975]},
+            {"id": "NS-02", "name": "Sabarmati", "type": "station", "coords": [23.0805, 72.5930]},
+            {"id": "NS-03", "name": "Sabarmati Railway Station", "type": "railway_hub", "badge": "IR / HSR", "coords": [23.0710, 72.5890]},
+            {"id": "NS-04", "name": "Ranip", "type": "station", "coords": [23.0610, 72.5830]},
+            {"id": "NS-05", "name": "Vadaj", "type": "station", "coords": [23.0520, 72.5770]},
+            {"id": "NS-06", "name": "Vijay Nagar", "type": "station", "coords": [23.0450, 72.5740]},
+            {"id": "NS-07", "name": "Usmanpura", "type": "station", "coords": [23.0400, 72.5725]},
+            {"id": "NS-08", "name": "Old High Court", "type": "interchange", "badge": "Line 1 Interchange", "coords": [23.0375, 72.5715]},
+            {"id": "NS-09", "name": "Gandhigram", "type": "station", "coords": [23.0270, 72.5710]},
+            {"id": "NS-10", "name": "Paldi", "type": "station", "coords": [23.0135, 72.5670]},
+            {"id": "NS-11", "name": "Shreyas", "type": "station", "coords": [23.0040, 72.5630]},
+            {"id": "NS-12", "name": "Rajiv Nagar", "type": "station", "coords": [22.9950, 72.5560]},
+            {"id": "NS-13", "name": "Jivraj Park", "type": "station", "coords": [22.9860, 72.5480]},
+            {"id": "NS-14", "name": "APMC", "type": "terminal", "badge": "Gyaspur Depot", "coords": [22.9770, 72.5410]}
         ]
     },
     "GN Branch": {
@@ -205,11 +205,12 @@ GMRC_CORRIDORS = {
         "color": "#8B5CF6",
         "length_km": 10.5,
         "stations": [
-            {"id": "GN-01", "name": "Koba Circle", "type": "junction", "badge": "Phase 2 Jct"},
-            {"id": "GN-02", "name": "GNLU", "type": "station"},
-            {"id": "GN-03", "name": "PDPU", "type": "station"},
-            {"id": "GN-04", "name": "GIFT City", "type": "terminal", "badge": "Fintech Hub"}
+            {"id": "GN-01", "name": "Koba Circle", "type": "junction", "badge": "Phase 2 Jct", "coords": [23.1480, 72.6350]},
+            {"id": "GN-02", "name": "GNLU", "type": "station", "coords": [23.1610, 72.6470]},
+            {"id": "GN-03", "name": "PDPU", "type": "station", "coords": [23.1680, 72.6650]},
+            {"id": "GN-04", "name": "GIFT City", "type": "terminal", "badge": "Fintech Hub", "coords": [23.1590, 72.6840]}
         ]
     }
 }
+
 

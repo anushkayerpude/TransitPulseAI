@@ -13,6 +13,7 @@ from fastapi.testclient import TestClient
 from config import GMRC_CORRIDORS, GMRC_TRACK_STATUSES
 from engine.track_monitor import GMRCTrackMonitor
 from components.track_diagram import generate_track_svg
+from components.transit_map import generate_leaflet_map_html
 from api import app
 
 class TestGMRCTrackMonitor(unittest.TestCase):
@@ -101,5 +102,17 @@ class TestGMRCTrackMonitor(unittest.TestCase):
         self.assertEqual(r_over.status_code, 200)
         self.assertEqual(r_over.json()["status"], "SUCCESS")
 
+    def test_08_leaflet_map_generation(self):
+        """Verify Leaflet GIS HTML compiles with stations, coordinates, and Leaflet CDN scripts."""
+        html_code = generate_leaflet_map_html(selected_corridor="East-West Line", scenario="incident")
+        self.assertIn("leaflet.js", html_code)
+        self.assertIn("leaflet.css", html_code)
+        self.assertIn("L.map('map'", html_code)
+        self.assertIn("Thaltej Gam", html_code)
+        self.assertIn("Old High Court", html_code)
+        self.assertIn("23.0375", html_code)  # Coordinate check
+        self.assertIn("72.5715", html_code)
+
 if __name__ == "__main__":
     unittest.main()
+
