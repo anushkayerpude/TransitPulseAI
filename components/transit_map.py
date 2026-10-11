@@ -281,23 +281,27 @@ def generate_leaflet_map_html(selected_corridor: str = "East-West Line", scenari
             attributionControl: true
         }}).setView([23.0375, 72.5715], 12);
 
-        // Add CartoDB Positron clean light tiles with automatic OSM fallback
-        const baseLayer = L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
+        // 100% Free Keyless Basemaps (No API Key Required, No Watermarks)
+        const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }});
-        let fallbackTriggered = false;
-        baseLayer.on('tileerror', function() {{
-            if (!fallbackTriggered) {{
-                fallbackTriggered = true;
-                L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                    maxZoom: 19
-                }}).addTo(map);
-            }}
+
+        const esriGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+            maxZoom: 16,
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
         }});
-        baseLayer.addTo(map);
+
+        // Add OpenStreetMap by default
+        osmLayer.addTo(map);
+
+        // Layer Switcher Control (OpenStreetMap vs Light Gray)
+        const baseMaps = {{
+            "🗺️ OpenStreetMap (Streets)": osmLayer,
+            "🏙️ Muted Light Canvas": esriGray
+        }};
+        L.control.layers(baseMaps, null, {{ position: 'topleft' }}).addTo(map);
+
 
 
         // Store all polyline bounds to fit view
